@@ -1,0 +1,4 @@
+baseURL = "http://cshung.github.io/"
+languageCode = "en-us"
+title = "My Blog"
+theme = "ananke"
