@@ -7,3 +7,5 @@ This is the source for [my blog](http://cshung.github.io). The actual webpages a
 Use `hugo new posts/something.md` to create a new post
 
 Use `hugo -D server` to start a localhost server to see how the post look like.
+
+Check https://www.free-counters.org/stats/86pd for counter
