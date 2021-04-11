@@ -64,7 +64,7 @@ draft: false
                         }
                         if (filename.StartsWith("-"))
                         {
-                            filename = filename.Substring(1, filename.Length);
+                            filename = filename.Substring(1, filename.Length - 1);
                         }
                         filename = filename + ".md";
                         string markdown = sb.ToString();
@@ -72,8 +72,6 @@ draft: false
                         {
                             markdown = markdown.Replace("\n\n\n", "\n\n");
                         }
-
-
                         sb.Clear();
                         bool inequation = false;
                         foreach (var c in markdown)
@@ -193,7 +191,8 @@ draft: false
             else if (node.Name == "script")
             {
                 string scriptSource = node.Attributes["src"].Value;
-                if (scriptSource.StartsWith("https://gist-it.appspot.com/")) {
+                if (scriptSource.StartsWith("https://gist-it.appspot.com/"))
+                {
                     string append = string.Format("{{{{<github \"{0}\">}}}}", scriptSource.Substring("https://gist-it.appspot.com/".Length));
                     sb.Append(append);
                     hasCode = true;
