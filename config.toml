@@ -2,3 +2,8 @@ baseURL = "https://cshung.github.io/"
 languageCode = "en-us"
 title = "My Blog"
 theme = "ananke"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

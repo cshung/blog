@@ -1,0 +1,43 @@
+<input name="responses" type="radio" value="LGTM" checked> LGTM 
+<input name="responses" type="radio" value="PATCH"> PATCH
+<input name="responses" type="radio" value="Skip"> Skip
+<input type="button" value="review" onclick="review()"></input>
+<script>
+function review() {
+    const xhr = new XMLHttpRequest();
+
+    var radios = document.getElementsByTagName("input");
+    for (var i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+            mode = radios[i].value;
+        }
+    }
+
+    // listen for `load` event
+    xhr.onload = () => {
+
+        // print JSON response
+        if (xhr.status >= 200 && xhr.status < 300) {
+            // parse JSON
+            const response = JSON.parse(xhr.responseText);
+        }
+    };
+
+    // create a JSON object
+    const json = {
+        "Id" : "{{ .Get 0}}",
+        "Key" : "{{ .Get 2}}",
+        "Value" : mode
+    };
+
+    // open request
+    xhr.open('POST', 'https://localhost:5001/Edit');
+
+    // set `Content-Type` header
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    // send rquest with JSON payload
+    xhr.send(JSON.stringify(json));
+    window.location = "{{ .Get 3}}";
+}
+</script>

@@ -1,0 +1,33 @@
+<input type="text" id="pathField" value="{{ .Get 1 }}"></input>
+<input type="button" value="confirm path" onclick="valid()"></input>
+<script>
+function valid() {
+    const xhr = new XMLHttpRequest();
+
+    // listen for `load` event
+    xhr.onload = () => {
+
+        // print JSON response
+        if (xhr.status >= 200 && xhr.status < 300) {
+            // parse JSON
+            const response = JSON.parse(xhr.responseText);
+        }
+    };
+
+    // create a JSON object
+    const json = {
+        "Id" : "{{ .Get 0}}",
+        "Key" : "{{ .Get 2}}",
+        "Value" : document.getElementById("pathField").value
+    };
+
+    // open request
+    xhr.open('POST', 'https://localhost:5001/Edit');
+
+    // set `Content-Type` header
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    // send rquest with JSON payload
+    xhr.send(JSON.stringify(json));
+}
+</script>

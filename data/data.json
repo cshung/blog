@@ -1,0 +1,2550 @@
+[
+  {
+    "Filename": "rosalind-ordering-strings-of-varying-length-lexicographically.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-search-in-a-binary-search-tree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-k-mer-composition.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-cheapest-flights-within-k-stops.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-error-correction-in-reads.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-insert-delete-getrandom-o1.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-maximum-matchings-and-rna-secondary-structures.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-coin-change-2.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-counting-phylogenetic-ancestors.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-random-pick-with-weight.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-catalan-numbers-and-rna-secondary-structures.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-two-city-scheduling.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-sorting-by-reversals.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-online-stock-span.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-reversal-distance.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-find-the-town-judge.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-creating-a-distance-matrix.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-check-if-it-is-a-straight-line.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-speeding-up-motif-finding.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-cousins-in-binary-tree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10370-above-average.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-graph-valid-tree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-perfect-matchings-and-rna-secondary-structures.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-open-reading-frames.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-transitions-and-transversions.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-enumerating-oriented-gene-orderings.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-interleaving-two-motifs.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-edit-distance-alignment.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-n-queens-ii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-n-queens.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-binary-tree-pruning.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-campus-bikes-ii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-group-shifted-strings.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-strobogrammatic-number-ii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-strobogrammatic-number.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-odd-even-linked-list.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-shortest-word-distance-iii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-shortest-word-distance-ii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-shortest-word-distance.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-reverse-words-in-a-string-ii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-count-univalue-subtrees.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-two-sum-iii-data-structure-design.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-missing-ranges.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-one-edit-distance.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-binary-tree-upside-down.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-range-sum-query-2d-mutable.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-edit-distance.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-finding-a-shared-spliced-motif.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-introduction-to-set-operations.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-finding-a-spliced-motif.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-counting-subsets.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-introduction-to-random-strings.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-genome-assembly-as-shortest-superstring.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-completing-a-tree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-partial-permutations.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-longest-increasing-subsequence.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-enumerating-k-mers-lexicographically.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-rna-splicing.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-locating-restriction-sites.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-calculating-protein-mass.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-finding-a-protein-motif.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-meeting-rooms-ii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-longest-increasing-path-in-a-matrix.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-minimum-number-of-arrows-to-burst-balloons.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-longest-substring-with-at-most-two-distinct-characters.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-minimum-area-rectangle.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-number-of-connected-components-in-an-undirected-graph.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-enumerating-gene-orders.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-inferring-mrna-from-protein.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-independent-alleles.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-calculating-expected-offspring.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-overlap-graphs.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-finding-a-shared-motif.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-mortal-fibonacci-rabbits.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-consensus-and-profile.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-finding-a-motif-in-dna.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-translating-rna-into-protein.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-mendels-first-law.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-counting-point-mutations.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-computing-gc-content.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-rabbits-and-recurrence-relations.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-complementing-a-strand-of-dna.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-transcribing-dna-into-rna.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "rosalind-counting-dna-nucleotides.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-trapping-rain-water.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-shortest-palindrome.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-shortest-common-supersequence.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-three-equal-parts.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-preimage-size-of-factorial-zeroes-function.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-unique-letter-string.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-equal-rational-numbers.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-delete-columns-to-make-sorted.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-binary-tree-cameras.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-perfect-number.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-numbers-at-most-n-given-digit-set.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-erect-the-fence.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-read-n-characters-given-read4.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-minimum-cost-to-hire-k-workers.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-is-graph-bipartite.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-maximum-width-of-binary-tree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-minimum-add-to-make-parentheses-valid.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-flip-string-to-monotone-increasing.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-palindromic-substrings.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-longest-word-in-dictionary-through-deleting.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-maximum-sum-circular-subarray.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-flipping-an-image.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-sort-array-by-parity-ii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-sort-array-by-parity.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-jewels-and-stones.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-my-calendar-iii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "hackerrank-sherlock-and-divisors.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "spoj-problem-set-classical-candy-i.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-sum-of-subsequence-widths.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-surface-area-of-3d-shapes.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-maximum-frequency-stack.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-all-possible-full-binary-trees.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-groups-of-special-equivalent-strings.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "poj-false-coin.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-keys-and-rooms.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-bricks-falling-when-hit.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-rectangle-area-ii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-longest-mountain-in-array.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-minimum-swaps-to-make-sequences-increasing.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-can-place-flowers.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-network-delay-time.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-teemo-attacking.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-remove-boxes.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-max-increase-to-keep-city-skyline.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-card-flipping-game.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-reverse-nodes-in-k-group.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-bomb-enemy.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-predict-the-winner.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-longest-valid-parentheses.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "codechef-rectangle.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-number-of-subarrays-with-bounded-maximum.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-number-of-segments-in-a-string.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-special-binary-string.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "codechef-chef-and-his-cake.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-reach-a-number.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-3sum-closest.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "codechef-days-in-month.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-single-element-in-a-sorted-array.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-sentence-similarity-ii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "approximation-algorithm-for-maximum-spanning-tree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-sentence-similarity.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-split-linked-list-in-parts.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-binary-number-with-alternating-bits.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-valid-parenthesis-string.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-max-area-of-island.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-redundant-connection.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-knight-probability-in-chessboard.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-minimum-absolute-difference-in-bst.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-letter-combinations-of-a-phone-number.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-base-7.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-convert-bst-to-greater-tree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-diameter-of-binary-tree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "hackerrank-almost-sorted-interval.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-remove-9.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-maximum-binary-tree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-print-binary-tree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-set-mismatch.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-merge-two-binary-trees.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-subtree-of-another-tree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-permutation-in-string.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-subarray-sum-equals-k.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-shortest-unsorted-continuous-subarray.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-kill-process.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-longest-harmonious-subsequence.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-student-attendance-record-ii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-binary-tree-tilt.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "negative-fibonacci-numbers.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-array-partition-i.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "hackerrank-cavity-map.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "hackerrank-super-reduced-string.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-total-hamming-distance.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-most-frequent-subtree-sum.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-find-bottom-left-tree-value.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-find-largest-value-in-each-tree-row.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-longest-palindromic-subsequence.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-find-mode-in-binary-search-tree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-hamming-distance.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-ones-and-zeroes.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "convolution-using-the-overlap-add-method.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "hackerrank-is-this-a-binary-search-tree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "hackerrank-swap-nodes-algo.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "hackerrank-binary-search-tree-lowest-common-ancestor.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "hackerrank-tree-huffman-decoding.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "hackerrank-binary-search-tree-insertion.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "hackerrank-tree-level-order-traversal.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "hackerrank-tree-top-view.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "hackerrank-tree-height-of-a-binary-tree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "hackerrank-tree-inorder-traversal.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "hackerrank-tree-postorder-traversal.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "hackerrank-tree-preorder-traversal.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-132-pattern.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-island-perimeter.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-assign-cookies.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-minimum-moves-to-equal-array-elements-ii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-maximum-xor-of-two-numbers-in-an-array.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-minimum-moves-to-equal-array-elements.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-partition-equal-subset-sum.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-convert-sorted-list-to-binary-search-tree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-recover-binary-search-tree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-decode-string.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-arranging-coins.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-binary-tree-zigzag-level-order-traversal.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-triangle.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "hacker-rank-standard-deviation.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "hacker-rank-interquartile-range.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "hacker-rank-quartiles.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-rotate-list.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-edit-distance.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "hacker-rank-camelcase.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "hacker-rank-weighted-mean.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "hacker-rank-mean-median-and-mode.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-evaluate-reverse-polish-notation.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-next-permutation.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-is-subsequence.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-path-sum-ii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "hacker-rank-new-year-chaos.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-counting-bits.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-battleships-in-a-board.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "hacker-rank-flipping-the-matrix.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-path-sum-iii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-find-all-anagrams-in-a-string.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-third-maximum-number.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-convert-a-number-to-hexadecimal.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-add-strings.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-longest-palindrome.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-ransom-note.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-sum-of-left-leaves.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-sum-of-two-integers.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-fizz-buzz.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-arithmetic-slices.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-longest-repeating-character-replacement.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-reconstruct-original-digits-from-english.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-patching-array.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "fenwick-tree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-split-array-largest-sum.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-remove-k-digits.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-queue-reconstruction-by-height.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-binary-watch.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-nth-digit.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-rotate-function.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-evaluate-division.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-random-pick-index.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-integer-replacement.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-shuffle-an-array.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "hashtrie.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-mini-parser.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-perfect-rectangle-i.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-elimination-game.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-find-the-difference.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-lexicographical-numbers.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-first-unique-character-in-a-string.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-longest-absolute-file-path.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-guess-number-higher-or-lower.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "coursera-approximation-algorithms-part-ii-peer-assignment-3.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "coursera-approximation-algorithms-part-ii-peer-assignment-2.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "coursera-approximation-algorithms-part-ii-peer-assignment-1.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-wiggle-subsequence.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-largest-divisible-subset.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-russian-doll-envelopes.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-design-twitter.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-lru-cache.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-water-and-jug-problem.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-valid-perfect-square.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "coursera-approximation-algorithms-part-i-peer-assignment-5.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-count-numbers-with-unique-digits.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "coursera-approximation-algorithms-part-i-peer-assignment-4-question-2.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "coursera-approximation-algorithms-part-i-peer-assignment-4-question-1.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "data-structure-challenge.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "coursera-approximation-algorithms-part-i-peer-assignment-3.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "coursera-approximation-algorithms-part-i-peer-assignment-2.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-data-stream-as-disjoint-intervals.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "coursera-approximation-algorithms-part-i-peer-assignment-1.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-intersection-of-two-arrays.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-reverse-vowels-of-a-string.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-reverse-string.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-power-of-four.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-text-justification.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-the-skyline-problem.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-word-ladder.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-minimum-height-trees.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-count-of-smaller-numbers-after-self.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-unique-binary-search-trees-ii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-linked-list-cycle-ii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-max-points-on-a-line.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-search-for-a-range.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-decode-ways.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-reverse-words-in-a-string.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-fraction-to-recurring-decimal.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-verify-preorder-serialization-of-a-binary-tree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-reconstruct-itinerary.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-kth-largest-element-in-an-array.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "polynomial-processing-in-python.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-clone-graph.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "splaytree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-coin-change.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-power-of-three.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-maximum-product-of-word-lengths.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-count-complete-tree-nodes.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-burst-balloons.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-bulb-switcher.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-game-of-life.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-combinations.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-word-pattern.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-populating-next-right-pointers-in-each-node-ii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-basic-calculator-ii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-basic-calculator.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-find-median-from-data-stream.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-range-sum-query-mutable.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-range-sum-query-2d-immutable.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-range-sum-query-immutable.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-serialize-and-deserialize-binary-tree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-bulls-and-cows.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-sudoku-solver.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-nim-game.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-multiply-strings.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-find-peak-element.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-find-the-duplicate-number.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-subsets-ii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-subsets.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-set-matrix-zeroes.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-flatten-binary-tree-to-linked-list.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-binary-tree-postorder-traversal.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-unique-paths-ii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-powx-n.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-gas-station.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-spiral-matrix-ii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-spiral-matrix.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-permutations.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-validate-binary-search-tree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-rotate-image.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-minimum-path-sum.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-sort-colors.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-gray-code.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-find-minimum-in-rotated-sorted-array.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-unique-paths.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-convert-sorted-array-to-binary-search-tree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-peeking-iterator.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-maximum-product-subarray.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-maximum-subarray.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-search-insert-position.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-move-zeroes.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-best-time-to-buy-and-sell-stock-iii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-best-time-to-buy-and-sell-stock-ii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-best-time-to-buy-and-sell-stock.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-restore-ip-addresses.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-number-of-islands.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-search-a-2d-matrix.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-perfect-squares.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-first-bad-version.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-h-index.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-bitwise-and-of-numbers-range.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-sqrtx.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-divide-two-integers.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-missing-number.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-compare-version-numbers.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-valid-sudoku.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-implement-strstr.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-valid-palindrome.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-single-number-iii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-ugly-number-ii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-ugly-number.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-add-digits.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-binary-tree-level-order-traversal-ii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-binary-tree-paths.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-add-binary.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-swap-nodes-in-pairs.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-generate-parentheses.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-symmetric-tree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-happy-number.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-remove-linked-list-elements.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-count-primes.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-contains-duplicate-ii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-pascals-triangle-ii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-isomorphic-strings.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-reverse-linked-list.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-implement-stack-using-queues.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-contains-duplicate.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-merge-two-sorted-lists.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-implement-trie-prefix-tree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-valid-anagram.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-search-a-2d-matrix-ii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-rectangle-area.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-remove-nth-node-from-end-of-list.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-summary-ranges.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-remove-duplicates-from-sorted-list.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-add-and-search-word-data-structure-design.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-binary-search-tree-iterator.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-kth-smallest-element-in-a-bst.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-power-of-two.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-min-stack.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-sliding-window-maximum.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-number-of-digit-one.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-palindrome-linked-list.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-product-of-array-except-self.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-delete-node-in-a-linked-list.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-3sum.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-longest-common-prefix.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-roman-to-integer.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-integer-to-roman.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-lowest-common-ancestor-of-a-binary-tree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-lowest-common-ancestor-of-a-binary-search-tree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-container-with-most-water.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-remove-duplicates-from-sorted-array.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-jump-game-ii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-jump-game.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-merge-sorted-array.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-construct-binary-tree-from-inorder-and-postorder-traversal.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-construct-binary-tree-from-preorder-and-inorder-traversal.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-regular-expression-matching.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-implement-queue-using-stacks.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-palindrome-number.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-binary-tree-right-side-view.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-string-to-integer-atoi.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-reverse-integer.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-zigzag-conversion.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-longest-palindromic-substring.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "road-to-suffix-tree-12.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "road-to-suffix-tree-11.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "road-to-suffix-tree-10.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "road-to-suffix-tree-09.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "road-to-suffix-tree-08.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "road-to-suffix-tree-07.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "road-to-suffix-tree-06.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "road-to-suffix-tree-05.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "road-to-suffix-tree-04.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "road-to-suffix-tree-03.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "road-to-suffix-tree-02.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "road-to-suffix-tree-01.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-invert-binary-tree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "binomial-heap-in-haskell.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-41.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-40.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-39.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-38.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-37.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-36.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-35.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-34.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-33.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-32.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-31.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-28.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-27.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-26.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "avl-tree-in-haskell.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-25.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-24.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-23.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-22.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-21.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-20.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-19.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-18.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-17.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-16.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-15.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-14.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-13.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-12.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-11.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-10.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-9.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-8.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-7.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-6.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-5.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-4.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-3.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-2.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problem-1.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "haskell-99-problems.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-median-of-two-sorted-arrays.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-largest-number.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-binary-tree-preorder-traversal.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-binary-tree-inorder-traversal.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-climbing-stairs.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-populating-next-right-pointers-in-each-node.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-single-number-ii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-linked-list-cycle.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-unique-binary-search-trees.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-valid-parentheses.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-repeated-dna-sequences.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-intersection-of-two-linked-lists.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-binary-tree-level-order-traversal.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-merge-k-sorted-lists.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-excel-sheet-column-title.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-excel-sheet-column-number.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-length-of-last-word.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-house-robber.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-factorial-trailing-zeroes.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-path-sum.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-count-and-say.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-rotate-array.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-reverse-bits.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-majority-element.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-plus-one.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-single-number.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-longest-substring-without-repeating-characters.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-add-two-numbers.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-two-sum.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-surrounded-regions.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-minimum-depth-of-binary-tree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-balanced-binary-tree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-pascals-triangle.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-number-of-1-bits.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-same-tree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-maximum-depth-of-binary-tree.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-11631-dark-roads.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10511-councilling.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-563-crimewave.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-11506-angry-programmer.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10779-collectors-problem.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10480-sabotage.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-820-internet-bandwidth.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-925-no-more-prerequisites-please.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-534-frogger.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-334-identifying-concurrent-events.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-821-page-hopping.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-423-mpi-maelstrom.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-186-trip-routing.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10842-traffic-flow.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10397-connect-the-campus.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10600-acm-contest-and-blackout.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10557-xyzzy.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-558-wormholes.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10369-arctic-network.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10147-highways.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10603-fill.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10278-fire-station.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-929-number-maze.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-341-non-stop-travel.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-11228-transportation-system.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10004-bicoloring.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10307-killing-aliens-in-borg-maze.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-469-wetlands-of-florida.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-417-word-index.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10034-freckles.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-383-shipping-routes.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-200-rare-order.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-124-following-orders.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-11504-dominos.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10731-test.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-610-street-directions.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-315-network.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-352-the-seasonal-war.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-260-il-gioco-dellx.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-910-tv-game.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10891-game-of-sum.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10243-fire-fire-fire.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-590-always-on-the-run.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10651-pebble-solitaire.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10364-square.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-607-scheduling-lectures.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-473-raucous-rockers.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-116-unidirectional-tsp.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-990-diving-for-gold.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-562-dividing-coins.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-836-largest-submatrix.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-108-maximum-sum.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-674-coin-change.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-357-let-me-count-the-ways.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-166-making-change.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-147-dollars.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-481-what-goes-up.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-231-testing-the-catcher.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "spoj-problem-set-classical-fishmonger.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10911-forming-quiz-teams.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10003-cutting-sticks.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-111-history-grading.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-103-stacking-boxes.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-11450-wedding-shopping.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-11369-shopaholic.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-11292-dragon-of-loowater.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-11054-wine-trading-in-gergovia.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10763-foreign-exchange.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10670-work-reduction.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10440-ferry-loading-ii.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10340-all-in-all.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10020-minimal-coverage.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-410-station-balance.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-sum-root-to-leaf-numbers.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "leetcode-longest-consecutive-sequence.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "spoj-problem-set-classical-horrible-queries.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10077-the-stern-brocot-number-system.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10341-solve-it.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "spoj-problem-set-classical-light-switching-2nd-attempt.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "spoj-problem-set-classical-light-switching-1st-attempt.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-957-popes.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "spoj-problem-set-classical-life-the-universe-and-everything.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-714-copying-books.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-679-dropping-balls.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-11242-tour-de-france.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10158-war.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-193-graph-coloring.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-639-dont-get-rooked.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-628-passwords.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-524-prime-ring-problem.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10360-rat-attack.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-750-8-queens-chess-problem.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-725-division.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "introducing-avlnet.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-11503-virtual-friends.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10505-montesco-vs-capuleto.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-11297-c-census.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10928-my-dear-neighbours.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-912-live-from-mars.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-11235-frequent-values.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-459-graph-connectivity.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-291-the-house-of-santa-claus.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-908-re-connecting-computer-sites.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10226-hardwood-species.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-336-a-node-too-far.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-127-accordian-patience.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-11462-age-sort.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-299-train-swapping.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-146-id-codes.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-482-permutation-array.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10420-list-of-conquests.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10363-tic-tac-toe.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10281-average-speed.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10141-request-for-proposal.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-10082-wertyu.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-941-permutations.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-837-light-and-transparencies.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-739-soundex-indexing.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-661-blowing-fuses.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-573-the-snail.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-483-word-scramble.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-394-mapmaker.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-272-tex-quotes.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "uva-problem-100-the-3n-1-problem.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "spoj-problem-set-classical-the-next-palindrome.md",
+    "Payload": {}
+  },
+  {
+    "Filename": "starting-of-the-blog.md",
+    "Payload": {}
+  }
+]
