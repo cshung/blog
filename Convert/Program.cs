@@ -1,0 +1,195 @@
+﻿namespace Convert
+{
+    using HtmlAgilityPack;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Text;
+    using System.Xml.Linq;
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string ns = "http://www.w3.org/2005/Atom";
+            XDocument doc = XDocument.Load(@"C:\dev\blog\Convert\blog.xml");
+            XElement root = doc.Root;
+            HashSet<String> names = new HashSet<string>();
+            foreach (var element in root.Elements(XName.Get("entry", ns)))
+            {
+                bool post = false;
+                foreach (var category in element.Elements(XName.Get("category", ns)))
+                {
+                    string scheme = category.Attribute("scheme").Value;
+                    if (scheme.Equals("http://schemas.google.com/g/2005#kind"))
+                    {
+                        string term = category.Attribute("term").Value;
+                        if (term.Equals("http://schemas.google.com/blogger/2008/kind#post"))
+                        {
+                            post = true;
+                        }
+                    }
+                }
+                if (post)
+                {
+                    string title = element.Element(XName.Get("title", ns)).Value.Replace("\"", "");
+                    string content = element.Element(XName.Get("content", ns)).Value;
+                    string date = element.Element(XName.Get("published", ns)).Value;
+                    string preambleTemplate = @"---
+title: ""{0}""
+date: {1}
+draft: false
+---
+
+";
+                    string preamble = string.Format(preambleTemplate, title, date);
+                    HtmlDocument html = new HtmlDocument();
+                    html.LoadHtml(content);
+                    IEnumerable<HtmlNode> children = html.DocumentNode.ChildNodes;
+                    StringBuilder sb = new StringBuilder();
+                    try
+                    {
+                        sb.Append(preamble);
+                        ConvertChildNodes(html.DocumentNode, sb);
+                        string filename = title.Trim().Replace(" - ", "-").Replace(" ", "-").Replace(".", "-").Replace("?", "").Replace("\"", "") + ".md";
+                        string markdown = sb.ToString();
+                        while (markdown.Contains("\n\n\n"))
+                        {
+                            markdown = markdown.Replace("\n\n\n", "\n\n");
+                        }
+
+                        sb.Clear();
+                        bool inequation = false;
+                        foreach (var c in markdown)
+                        {
+                            if (c == '$')
+                            {
+                                if (inequation)
+                                {
+                                    sb.Append("\\\\)");
+                                    inequation = false;
+                                }
+                                else
+                                {
+                                    sb.Append("\\\\(");
+                                    inequation = true;
+                                }
+                            }
+                            else
+                            {
+                                sb.Append(c);
+                            }
+                        }
+                        markdown = sb.ToString();
+
+
+                        // My blog specific
+
+                        string code = "**Code:**";
+                        if (markdown.IndexOf(code) != -1)
+                        {
+                            markdown = markdown.Substring(0, markdown.IndexOf(code) + code.Length);
+                            // TODO, actually present the code!
+                        }
+
+
+
+
+                        File.WriteAllText(filename, markdown);
+                        // Console.WriteLine("Succeed " + title);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Failed " + title + " because the page has a " + ex.Message + " tag.");
+                    }
+                }
+            }
+            foreach (var name in names)
+            {
+                Console.WriteLine(name);
+            }
+        }
+
+        private static void Convert(HtmlNode node, StringBuilder sb)
+        {
+            if (node.Name == "p" || node.Name == "div" || node.Name == "ol" || node.Name == "ul" || node.Name == "li")
+            {
+                ConvertChildNodes(node, sb);
+                sb.Append("\n\n");
+            }
+            else if (node.Name == "i")
+            {
+                StringBuilder inner = new StringBuilder();
+                ConvertChildNodes(node, inner);
+                string innerText = inner.ToString().Trim();
+                if (innerText.Length > 0)
+                {
+                    sb.Append("*");
+                    sb.Append(innerText);
+                    sb.Append("*");
+                }
+            }
+            else if (node.Name == "strike")
+            {
+                StringBuilder inner = new StringBuilder();
+                ConvertChildNodes(node, inner);
+                string innerText = inner.ToString().Trim();
+                if (innerText.Length > 0)
+                {
+                    sb.Append("~~");
+                    sb.Append(innerText);
+                    sb.Append("~~");
+                }
+            }
+            else if (node.Name == "b")
+            {
+                StringBuilder inner = new StringBuilder();
+                ConvertChildNodes(node, inner);
+                string innerText = inner.ToString().Trim();
+                if (innerText.Length > 0)
+                {
+                    sb.Append("**");
+                    sb.Append(innerText);
+                    sb.Append("**");
+                }
+            }
+            else if (node.Name == "#text")
+            {
+                sb.Append(HtmlEntity.DeEntitize(node.InnerText));
+            }
+            else if (node.Name == "a")
+            {
+                sb.Append("[");
+                sb.Append(node.InnerText);
+                sb.Append("]");
+                sb.Append("(");
+                sb.Append(node.Attributes["href"].Value);
+                sb.Append(")");
+            }
+            else if (node.Name == "br")
+            {
+                sb.Append("\n\n");
+            }
+            else if (node.Name == "script")
+            {
+                // Hmm
+            }
+            else if (node.Name == "pre" || node.Name == "span")
+            {
+                ConvertChildNodes(node, sb);
+            }
+            else
+            {
+                throw new Exception(node.Name);
+            }
+        }
+
+        private static void ConvertChildNodes(HtmlNode node, StringBuilder sb)
+        {
+            foreach (var child in node.ChildNodes)
+            {
+                Convert(child, sb);
+            }
+        }
+    }
+}
