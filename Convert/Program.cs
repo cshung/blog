@@ -4,6 +4,7 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using System.Text;
     using System.Xml.Linq;
 
@@ -50,13 +51,28 @@ draft: false
                     try
                     {
                         sb.Append(preamble);
+                        hasCode = false;
                         ConvertChildNodes(html.DocumentNode, sb);
-                        string filename = title.Trim().Replace(" - ", "-").Replace(" ", "-").Replace(".", "-").Replace("?", "").Replace("\"", "") + ".md";
+                        string filename = string.Join("", title.Where(c => char.IsDigit(c) || char.IsLetter(c) || c == '-' || c == ' ')).Replace(' ', '-').ToLower();
+                        while (filename.Contains("--"))
+                        {
+                            filename = filename.Replace("--", "-");
+                        }
+                        if (filename.EndsWith("-"))
+                        {
+                            filename = filename.Substring(0, filename.Length - 1);
+                        }
+                        if (filename.StartsWith("-"))
+                        {
+                            filename = filename.Substring(1, filename.Length);
+                        }
+                        filename = filename + ".md";
                         string markdown = sb.ToString();
                         while (markdown.Contains("\n\n\n"))
                         {
                             markdown = markdown.Replace("\n\n\n", "\n\n");
                         }
+
 
                         sb.Clear();
                         bool inequation = false;
@@ -82,24 +98,26 @@ draft: false
                         }
                         markdown = sb.ToString();
 
+                        // My blog specific - some of the blog entries has a pile of code pasted in it, they are better presented as a gist
 
-                        // My blog specific
+                        markdown = markdown.Replace("**Solution**:", "**Solution:**");
+                        markdown = markdown.Replace("**Problem**:", "**Problem:**");
+                        markdown = markdown.Replace("**Code**:", "**Code:**");
+                        markdown = markdown.Replace("**Solution**", "**Solution:**");
+                        markdown = markdown.Replace("**Problem**", "**Problem:**");
+                        markdown = markdown.Replace("**Code**", "**Code:**");
 
                         string code = "**Code:**";
-                        if (markdown.IndexOf(code) != -1)
+                        if (markdown.IndexOf(code) != -1 && !hasCode)
                         {
                             markdown = markdown.Substring(0, markdown.IndexOf(code) + code.Length);
-                            // TODO, actually present the code!
+                            // TODO, actually present the code when there is no easy convert
                         }
-
-
-
-
                         File.WriteAllText(filename, markdown);
-                        // Console.WriteLine("Succeed " + title);
                     }
                     catch (Exception ex)
                     {
+                        // TODO, what is the case 
                         Console.WriteLine("Failed " + title + " because the page has a " + ex.Message + " tag.");
                     }
                 }
@@ -109,6 +127,8 @@ draft: false
                 Console.WriteLine(name);
             }
         }
+
+        private static bool hasCode;
 
         private static void Convert(HtmlNode node, StringBuilder sb)
         {
@@ -172,7 +192,12 @@ draft: false
             }
             else if (node.Name == "script")
             {
-                // Hmm
+                string scriptSource = node.Attributes["src"].Value;
+                if (scriptSource.StartsWith("https://gist-it.appspot.com/")) {
+                    string append = string.Format("{{{{<github \"{0}\">}}}}", scriptSource.Substring("https://gist-it.appspot.com/".Length));
+                    sb.Append(append);
+                    hasCode = true;
+                }
             }
             else if (node.Name == "pre" || node.Name == "span")
             {
