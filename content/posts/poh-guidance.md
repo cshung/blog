@@ -74,6 +74,9 @@ This is an example of converting a scenario from using the pinned GC handle to u
 
 [MaoniS - insert code examples with perf analysis here - basically what you did with GCPerfSim. You can show how to use perfview to look at the perf since you are saying to monitor perf below]
 
+[The idea of this is that we wanted our reader to reach conclusion on their own]
+[To make pinned object heap behaves worst then normal pinning, we can pin it from only short period of time]
+
 # Guidelines
 
 **Consider** understanding how the Pinned Object Heap solves the pinning problem.
