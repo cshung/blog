@@ -1,0 +1,93 @@
+---
+title: "POH Tuning 5 (Part 5 - A surprising result)"
+date: 2021-03-08T10:57:05-08:00
+draft: false
+---
+# Top level result
+After running, we can use the Jupyter notebook to analyze the result. The result is surprising. To make the data easy to analyze, they are available as [pandas](https://pandas.pydata.org/) data frame. For those who are unfamiliar with pandas, a data frame is really just a table.
+
+To use the notebook to get to the data frame, we need to run the first cell (as it required to setup the functions), and then we can run the cell calling the `get_test_metrics_numbers_for_jupyter` function, there should be exactly one such cell. And this cell will give us the `run_data_frame` variable.
+
+With that, running this command is going to give us the key metrics.
+
+```py
+run_data_frame[["benchmark_name", "PctTimePausedInGC", "speed", "HeapSizeBeforeMB_Mean", "HeapSizeAfterMB_Mean"]]
+```
+
+|benchmark_name|PctTimePausedInGC|speed    |HeapSizeBeforeMB_Mean|HeapSizeAfterMB_Mean|
+|--------------|-----------------|---------|---------------------|--------------------|
+|2gb_pinning   |84.584909        |74.507776|4212.065595          |4211.896844         |
+|2gb_poh       |58.932117        |28.178092|2905.966651          |2931.814551         |
+
+At a glance, the speed is significantly reduced despite all other metrics shows improvement. This is just weird. 
+
+# The weird speed metric
+Upon further investigation, I figured out that the `speed` metric reported by the infrastructure is really just the geometric mean of `FirstToLastGCSeconds` and `PauseDurationMSec_95P`. Both of them are measured in seconds, so the value is the smaller the better. So in fact, we are showing an improvement in the timing aspect as well.
+
+# What caused the improvement?
+Apparently we are spending much less time in GC. Let's take a look at the number of GCs first.
+
+```py
+run_data_frame[["benchmark_name", "TotalNumberGCs", "CountIsGen0", "CountIsGen1", "CountIsBackground", "CountIsBlockingGen2"]]
+```
+
+|benchmark_name|TotalNumberGCs|CountIsGen0|CountIsGen1|CountIsBackground|CountIsBlockingGen2|
+|--------------|--------------|-----------|-----------|-----------------|-------------------|
+|2gb_pinning   |465           |373        |83         |0                |9                  |
+|2gb_poh       |441           |288        |145        |0                |8                  |
+
+Looking at the count data, we realize that there is much less gen 0 GCs. Sadly, while the data tell us there is reduced number of gen 0 GC, we do not understand why from the data. In the next post, I am going to talk about the how to analyze why do we have a significantly reduced number of GCs.
+
+# Are we just observing an effect from chance?
+As with any scientific studies, it is important to note that a single experiment result doesn't mean much. If it could not be reproduced or it could have occurred by chance, then it isn't particularly meaningful. To that end, I did an experiment and run the pair of benchmarks multiple times.
+
+Here are the top level metrics for 5 pairs:
+
+|benchmark_name|PctTimePausedInGC|speed    |HeapSizeBeforeMB_Mean|HeapSizeAfterMB_Mean|
+|--------------|-----------------|---------|---------------------|--------------------|
+|2gb_pinning   |86.695823        |68.904577|3975.341536          |3975.141108         |
+|2gb_pinning   |86.958315        |69.975187|4043.129444          |4043.039046         |
+|2gb_pinning   |86.827029        |67.912149|3956.215294          |3956.082617         |
+|2gb_pinning   |86.621232        |70.417457|3952.035881          |3951.910959         |
+|2gb_pinning   |82.729440        |65.620773|3960.181031          |3960.033957         |
+|2gb_poh       |58.919207        |27.532494|2922.832933          |2925.133052         |
+|2gb_poh       |61.433951        |29.091678|2916.807012          |2925.865497         |
+|2gb_poh       |60.594836        |28.570737|2922.916973          |2933.762425         |
+|2gb_poh       |59.346227        |27.225508|2904.967498          |2916.159127         |
+|2gb_poh       |60.305742        |27.091599|2908.377570          |2926.122556         |
+
+and here are the GC counts
+
+|TotalNumberGCs|CountIsGen0|CountIsGen1|CountIsBackground|CountIsBlockingGen2|
+|--------------|-----------|-----------|-----------------|-------------------|
+|642           |529        |104        |0                |9                  |
+|630           |520        |101        |0                |9                  |
+|621           |513        |99         |0                |9                  |
+|621           |511        |101        |0                |9                  |
+|425           |342        |74         |0                |9                  |
+|412           |265        |139        |0                |8                  |
+|420           |276        |136        |0                |8                  |
+|422           |278        |136        |0                |8                  |
+|426           |281        |137        |0                |8                  |
+|432           |282        |142        |0                |8                  |
+
+In this case, the data is fairly obvious, the observation we saw is fairly stable. To make this even more concrete, we could use the [Students' T test](https://en.wikipedia.org/wiki/Student%27s_t-test). Here I show that the decrease of number of gen 0 GC is statistically significant. To perform the test, we run these (it is not currently in the Jupyter notebook, but it could be)
+
+```py
+from scipy.stats import ttest_ind
+
+cat1 = run_data_frame[run_data_frame['benchmark_name']=='2gb_pinning']
+cat2 = run_data_frame[run_data_frame['benchmark_name']=='2gb_poh']
+
+ttest_ind(cat1['CountIsGen0'], cat2['CountIsGen0'], equal_var=False)
+```
+
+The code produced this result:
+
+```
+Ttest_indResult(statistic=5.816234919438247, pvalue=0.004156277038993128)
+```
+
+The statistics is just a number used in the calculation. The key is a small p-value. Basically, the p-value is the probability of observing the experimental result if we assume the number of gen0 collection in both cases is equal. Since the probability is so small, we choose to believe otherwise, that the number of gen0 collections is indeed different.
+
+For those who are familiar with statistics, here are some fine details for the test. We used unequal variance because we see and obvious flucation in the gen 0 counts in the pinned handle case but not in the pinned object heap case. The p-value outputted by scipy is a two-tailed p-value. Since we wanted to prove that the number of gen 0 is indeed smaller, we should have used a one-tailed p-value instead, which should be the number divided by 2, but they are small anyway.
