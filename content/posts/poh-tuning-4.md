@@ -4,7 +4,7 @@ date: 2021-03-05T19:55:26-08:00
 draft: false
 ---
 # Benchmark design
-Armed with the knowledge about how the allocation ratios works in the [previous post](../poh-tuning-3/). Now we can design our benchmarks. My goal is to produce a pair of benchmarks so that I can compare pinning objects by using the old pinned handle, or by the new pinned object heap. 
+Armed with the knowledge about how the allocation ratios works in the [previous post](../poh-tuning-2/). Now we can design our benchmarks. My goal is to produce a pair of benchmarks so that I can compare pinning objects by using the old pinned handle, or by the new pinned object heap. 
 
 In the pinned handle case, we can have a general design like this:
 

@@ -1,5 +1,5 @@
 ---
-title: "POH Tuning 5 (Part 5 - A surprising result)"
+title: "POH Tuning (Part 5 - Preliminary results)"
 date: 2021-03-08T10:57:05-08:00
 draft: false
 ---
@@ -16,8 +16,8 @@ run_data_frame[["benchmark_name", "PctTimePausedInGC", "speed", "HeapSizeBeforeM
 
 |benchmark_name|PctTimePausedInGC|speed    |HeapSizeBeforeMB_Mean|HeapSizeAfterMB_Mean|
 |--------------|-----------------|---------|---------------------|--------------------|
-|2gb_pinning   |84.584909        |74.507776|4212.065595          |4211.896844         |
-|2gb_poh       |58.932117        |28.178092|2905.966651          |2931.814551         |
+|2gb_pinning   |83.886439        |56.585445|4009.213205          |4009.053025         |
+|2gb_poh       |60.832619        |27.530971|2883.491157          |2947.730790         |
 
 At a glance, the speed is significantly reduced despite all other metrics shows improvement. This is just weird. 
 
@@ -33,10 +33,10 @@ run_data_frame[["benchmark_name", "TotalNumberGCs", "CountIsGen0", "CountIsGen1"
 
 |benchmark_name|TotalNumberGCs|CountIsGen0|CountIsGen1|CountIsBackground|CountIsBlockingGen2|
 |--------------|--------------|-----------|-----------|-----------------|-------------------|
-|2gb_pinning   |465           |373        |83         |0                |9                  |
-|2gb_poh       |441           |288        |145        |0                |8                  |
+|2gb_pinning   |683           |557        |117        |0                |9                  |
+|2gb_poh       |435           |278        |149        |0                |8                  |
 
-Looking at the count data, we realize that there is much less gen 0 GCs. Sadly, while the data tell us there is reduced number of gen 0 GC, we do not understand why from the data. In the next post, I am going to talk about the how to analyze why do we have a significantly reduced number of GCs.
+Looking at the count data, we realize that there is much less gen 0 GCs. Sadly, while the data tell us there is reduced number of gen 0 GC, we do not understand why from the data. In a future post, I am going to talk about the how to analyze why do we have a significantly reduced number of GCs.
 
 # Are we just observing an effect from chance?
 As with any scientific studies, it is important to note that a single experiment result doesn't mean much. If it could not be reproduced or it could have occurred by chance, then it isn't particularly meaningful. To that end, I did an experiment and run the pair of benchmarks multiple times.
@@ -45,31 +45,31 @@ Here are the top level metrics for 5 pairs:
 
 |benchmark_name|PctTimePausedInGC|speed    |HeapSizeBeforeMB_Mean|HeapSizeAfterMB_Mean|
 |--------------|-----------------|---------|---------------------|--------------------|
-|2gb_pinning   |86.695823        |68.904577|3975.341536          |3975.141108         |
-|2gb_pinning   |86.958315        |69.975187|4043.129444          |4043.039046         |
-|2gb_pinning   |86.827029        |67.912149|3956.215294          |3956.082617         |
-|2gb_pinning   |86.621232        |70.417457|3952.035881          |3951.910959         |
-|2gb_pinning   |82.729440        |65.620773|3960.181031          |3960.033957         |
-|2gb_poh       |58.919207        |27.532494|2922.832933          |2925.133052         |
-|2gb_poh       |61.433951        |29.091678|2916.807012          |2925.865497         |
-|2gb_poh       |60.594836        |28.570737|2922.916973          |2933.762425         |
-|2gb_poh       |59.346227        |27.225508|2904.967498          |2916.159127         |
-|2gb_poh       |60.305742        |27.091599|2908.377570          |2926.122556         |
+|2gb_pinning   |84.152044        |55.317034|4018.010300          |4017.822676         |
+|2gb_pinning   |84.332101        |54.444867|4021.135100          |4021.038674         |
+|2gb_pinning   |84.561195        |56.717987|4024.397596          |4024.306514         |
+|2gb_pinning   |84.601454        |52.776987|4006.901215          |4006.789502         |
+|2gb_pinning   |84.410538        |53.956592|4006.952758          |4006.901196         |
+|2gb_poh       |61.779599        |26.968380|2926.503793          |2960.753005         |
+|2gb_poh       |60.978760        |26.036596|2890.863907          |2940.875974         |
+|2gb_poh       |60.329187        |22.559079|2900.956131          |2956.372021         |
+|2gb_poh       |61.475650        |26.602588|2890.614196          |2941.809857         |
+|2gb_poh       |60.654861        |22.511328|2876.809548          |2932.633737         |
 
 and here are the GC counts
 
-|TotalNumberGCs|CountIsGen0|CountIsGen1|CountIsBackground|CountIsBlockingGen2|
-|--------------|-----------|-----------|-----------------|-------------------|
-|642           |529        |104        |0                |9                  |
-|630           |520        |101        |0                |9                  |
-|621           |513        |99         |0                |9                  |
-|621           |511        |101        |0                |9                  |
-|425           |342        |74         |0                |9                  |
-|412           |265        |139        |0                |8                  |
-|420           |276        |136        |0                |8                  |
-|422           |278        |136        |0                |8                  |
-|426           |281        |137        |0                |8                  |
-|432           |282        |142        |0                |8                  |
+|benchmark_name|TotalNumberGCs|CountIsGen0|CountIsGen1|CountIsBackground|CountIsBlockingGen2|
+|--------------|--------------|-----------|-----------|-----------------|-------------------|
+|2gb_pinning   |595           |491        |95         |0                |9                  |
+|2gb_pinning   |611           |501        |101        |0                |9                  |
+|2gb_pinning   |614           |510        |95         |0                |9                  |
+|2gb_pinning   |611           |502        |100        |0                |9                  |
+|2gb_pinning   |611           |504        |98         |0                |9                  |
+|2gb_poh       |390           |243        |139        |0                |8                  |
+|2gb_poh       |412           |259        |145        |0                |8                  |
+|2gb_poh       |480           |305        |167        |0                |8                  |
+|2gb_poh       |414           |259        |147        |0                |8                  |
+|2gb_poh       |484           |310        |166        |0                |8                  |
 
 In this case, the data is fairly obvious, the observation we saw is fairly stable. To make this even more concrete, we could use the [Students' T test](https://en.wikipedia.org/wiki/Student%27s_t-test). Here I show that the decrease of number of gen 0 GC is statistically significant. To perform the test, we run these (it is not currently in the Jupyter notebook, but it could be)
 
@@ -85,7 +85,7 @@ ttest_ind(cat1['CountIsGen0'], cat2['CountIsGen0'], equal_var=False)
 The code produced this result:
 
 ```
-Ttest_indResult(statistic=5.816234919438247, pvalue=0.004156277038993128)
+Ttest_indResult(statistic=16.317779324341963, pvalue=4.106432582405551e-05)
 ```
 
 The statistics is just a number used in the calculation. The key is a small p-value. Basically, the p-value is the probability of observing the experimental result if we assume the number of gen0 collection in both cases is equal. Since the probability is so small, we choose to believe otherwise, that the number of gen0 collections is indeed different.
