@@ -8,7 +8,7 @@ draft: false
 The .NET GC is generational, it makes the assumption that allocations are broadly divided into two classes, either they are short-lived (e.g. temporary objects) or they are long-lived (e.g. constants, caches for repeated uses). This assumption is often true, but once in a while, that's not true, often due to programmer mistakes. If a pile of objects meant for short term usage is leaked into gen2, that can cost a short term spike in ephemeral GC latency, and a long term memory cost for storing them. We would like to be able to detect it and analyze what happened.
 
 # Scenario
-Here is a sample program that demonstrates such a leak. This is the whole program, a copy with the project files can be found [here](https://github.com/cshung/blog-samples/blob/master/GenAwareDemo).
+Here is a sample program that demonstrates such a leak. This is the whole program, a copy with the project files can be found [here](https://github.com/cshung/blog-samples/blob/main/GenAwareDemo).
 
 ```c#
 namespace GenAwareDemo

@@ -108,4 +108,4 @@ void System.Runtime.CompilerServices.NullableContextAttribute..ctor(byte)
 ...
 ```
 
-This conclude our very simple HelloWorld example. The full source code of the HelloReflection can be found [here](https://github.com/cshung/blog-samples/tree/master/HelloReflection). Next, we will look into the other properties on the `ReadyToRunMethod` object. Stay tuned.
+This conclude our very simple HelloWorld example. The full source code of the HelloReflection can be found [here](https://github.com/cshung/blog-samples/tree/main/HelloReflection). Next, we will look into the other properties on the `ReadyToRunMethod` object. Stay tuned.
