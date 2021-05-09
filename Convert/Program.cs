@@ -158,6 +158,7 @@ draft: false
                             string append = string.Format("\n\n{{{{<github \"{0}\">}}}}", githubLink);
                             markdown = markdown + append;
                         }
+                        File.WriteAllText(@"c:\dev\blog\content\posts\" + filename, markdown);
                     }
                     catch (Exception ex)
                     {
