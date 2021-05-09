@@ -111,7 +111,7 @@ draft: false
                             markdown = markdown.Substring(0, markdown.IndexOf(code) + code.Length);
                             // TODO, actually present the code when there is no easy convert
                         }
-                        File.WriteAllText(filename, markdown);
+                        File.WriteAllText(@"c:\dev\blog\content\posts\" + filename, markdown);
                     }
                     catch (Exception ex)
                     {
