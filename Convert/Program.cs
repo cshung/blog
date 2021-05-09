@@ -15,7 +15,25 @@
             string ns = "http://www.w3.org/2005/Atom";
             XDocument doc = XDocument.Load(@"C:\dev\blog\Convert\blog.xml");
             XElement root = doc.Root;
-            HashSet<String> names = new HashSet<string>();
+            HashSet<string> names = new HashSet<string>();
+            string[] paths = Directory.GetFiles(@"C:\dev\Competition\Competition", "*.cpp");
+            Dictionary<string, string[]> pathTokensMap = new Dictionary<string, string[]>();
+            foreach (var path in paths)
+            {
+                string rawFilename = Path.GetFileNameWithoutExtension(path);
+                StringBuilder filenameBuilder = new StringBuilder();
+                for (int i = 0; i < rawFilename.Length; i++)
+                {
+                    if (i > 0 && char.IsDigit(rawFilename[i]) && !char.IsDigit(rawFilename[i - 1]))
+                    {
+                        filenameBuilder.Append("_");
+                    }
+                    filenameBuilder.Append(char.ToLower(rawFilename[i]));
+                }
+                string filename = filenameBuilder.ToString();
+                string[] tokens = filename.Split('_', StringSplitOptions.RemoveEmptyEntries);
+                pathTokensMap.Add(path, tokens);
+            }
             foreach (var element in root.Elements(XName.Get("entry", ns)))
             {
                 bool post = false;
@@ -33,7 +51,7 @@
                 }
                 if (post)
                 {
-                    string title = element.Element(XName.Get("title", ns)).Value.Replace("\"", "");
+                    string title = element.Element(XName.Get("title", ns)).Value.Replace("\"", "").Trim();
                     string content = element.Element(XName.Get("content", ns)).Value;
                     string date = element.Element(XName.Get("published", ns)).Value;
                     string preambleTemplate = @"---
@@ -109,9 +127,37 @@ draft: false
                         if (markdown.IndexOf(code) != -1 && !hasCode)
                         {
                             markdown = markdown.Substring(0, markdown.IndexOf(code) + code.Length);
-                            // TODO, actually present the code when there is no easy convert
+                            string[] titleTokens = title.ToLower().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                            double bestScore = -1;
+                            string bestPath = null;
+                            foreach (var kvp in pathTokensMap)
+                            {
+                                string[] pathTokens = kvp.Value;
+                                int count = 0;
+                                foreach (var pathToken in pathTokens)
+                                {
+                                    foreach (var titleToken in titleTokens)
+                                    {
+                                        if (titleToken.Equals(pathToken))
+                                        {
+                                            count++;
+                                        }
+                                    }
+                                }
+                                double score = (count + 0.0) / pathTokens.Length;
+                                if (score > bestScore)
+                                {
+                                    bestScore = score;
+                                    bestPath = kvp.Key;
+                                }
+                            }
+                            // TODO: The trick is right most of the time, but it fails sometimes.
+                            // We need a mechanism for reviewing to automatically converted files
+                            // Console.WriteLine(title + " -> " + bestPath);
+                            string githubLink = @"https://github.com/cshung/Competition/blob/main/Competition/" + Path.GetFileName(bestPath);
+                            string append = string.Format("\n\n{{{{<github \"{0}\">}}}}", githubLink);
+                            markdown = markdown + append;
                         }
-                        File.WriteAllText(@"c:\dev\blog\content\posts\" + filename, markdown);
                     }
                     catch (Exception ex)
                     {
