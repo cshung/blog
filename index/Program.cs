@@ -10,9 +10,20 @@
     {
         private static void Main(string[] args)
         {
-            var terms = new Dictionary<string, int>();
-            var index = new Dictionary<int, List<Tuple<int, int>>>();
             string[] documents = Directory.GetFiles(@"c:\dev\blog\content\posts", "*.md");
+            Index index = Index(documents);
+            string query = Console.ReadLine();
+            foreach (var result in Query(index, query))
+            {
+                Console.WriteLine("{0} {1}", result.Item1, result.Item2);
+            }
+        }
+
+        private static Index Index(string[] documents)
+        {
+            // TODO: Implement inverse document frequency
+            var terms = new Dictionary<string, int>();
+            var invertedIndex = new Dictionary<int, List<Tuple<int, int>>>();
             var documentLength = new double[documents.Length];
             for (int documentId = 0; documentId < documents.Length; documentId++)
             {
@@ -44,63 +55,80 @@
                     {
                         termId = terms.Count;
                         terms.Add(term, termId);
-                        index.Add(termId, new List<Tuple<int, int>>());
+                        invertedIndex.Add(termId, new List<Tuple<int, int>>());
                     }
-                    index[termId].Add(Tuple.Create(documentId, frequency));
+                    invertedIndex[termId].Add(Tuple.Create(documentId, frequency));
                     lengthSquared = lengthSquared + frequency * frequency;
                 }
                 documentLength[documentId] = Math.Sqrt(lengthSquared);
             }
-            BkTree correction = new BkTree();
+            var correction = new BkTree();
             foreach (var term in terms.Keys)
             {
                 correction.Insert(term);
             }
-            string query = Console.ReadLine();
-            foreach (var result in Query(terms, index, documents, documentLength, correction, query))
-            {
-                Console.WriteLine("{0} {1}", result.Item1, result.Item2);
-            }
+            return new Index(terms, invertedIndex, documents, documentLength, correction);
         }
 
-        // TODO: We should have an index abstraction that group these things together
-        private static IEnumerable<Tuple<string, double>> Query(Dictionary<string, int> terms, Dictionary<int, List<Tuple<int, int>>> index, string[] documents, double[] documentLength, BkTree correction, string query)
+        private static IEnumerable<Tuple<string, double>> Query(Index index, string query)
         {
-            var queryTerms = new List<string>();
+            Dictionary<string, int> terms = index.Terms;
+            Dictionary<int, List<Tuple<int, int>>> invertedIndex = index.InvertedIndex;
+            string[] documents = index.Documents;
+            double[] documentLength = index.DocumentLength;
+            BkTree correction = index.Correction;
+
+            var queryTermFrequencies = new Dictionary<string, int>();
             foreach (var queryTerm in query.Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(t => t.ToLower()))
             {
                 var corrections = correction.Query(queryTerm, 1);
                 string correctedQueryTerm = corrections.FirstOrDefault();
                 if (correctedQueryTerm != null)
                 {
-                    queryTerms.Add(correctedQueryTerm);
+                    Console.Write(correctedQueryTerm);
+                    Console.Write(" ");
+                    int queryTermFrequency = 0;
+                    if (!queryTermFrequencies.TryGetValue(correctedQueryTerm, out queryTermFrequency))
+                    {
+                        queryTermFrequencies.Add(correctedQueryTerm, 1);
+                    }
+                    else
+                    {
+                        queryTermFrequencies.Remove(correctedQueryTerm);
+                        queryTermFrequencies.Add(correctedQueryTerm, queryTermFrequency + 1);
+                    }
                 }
             }
+            Console.WriteLine();
             var documentNumerators = new Dictionary<int, int>();
-            foreach (var queryTerm in queryTerms)
+            double queryLengthSquared = 0;
+            foreach (var queryTermFrequency in queryTermFrequencies)
             {
+                string queryTerm = queryTermFrequency.Key;
+                int queryFrequency = queryTermFrequency.Value;
                 int termId = terms[queryTerm];
-                foreach (var hit in index[termId])
+                foreach (var hit in invertedIndex[termId])
                 {
                     int documentId = hit.Item1;
                     int termFrequency = hit.Item2;
                     int n = 0;
                     if (!documentNumerators.TryGetValue(documentId, out n))
                     {
-                        documentNumerators.Add(documentId, termFrequency);
+                        documentNumerators.Add(documentId, termFrequency * queryFrequency);
                     }
                     else
                     {
                         documentNumerators.Remove(documentId);
-                        documentNumerators.Add(documentId, n + termFrequency);
+                        documentNumerators.Add(documentId, n + termFrequency * queryFrequency);
                     }
                 }
+                queryLengthSquared = queryLengthSquared + queryFrequency * queryFrequency;
             }
             var rankedDocuments = new List<Tuple<double, int>>();
             foreach (var documentNumerator in documentNumerators)
             {
                 int documentId = documentNumerator.Key;
-                double documentScore = documentNumerator.Value / documentLength[documentId];
+                double documentScore = documentNumerator.Value / documentLength[documentId] / Math.Sqrt(queryLengthSquared);
                 rankedDocuments.Add(Tuple.Create(documentScore, documentId));
             }
             foreach (var rankedDocument in rankedDocuments.OrderBy(t => -t.Item1))
