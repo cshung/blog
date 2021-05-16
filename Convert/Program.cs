@@ -224,11 +224,16 @@ draft: false
             }
             else if (node.Name == "a")
             {
+                string link = node.Attributes["href"].Value;
+                if (link.EndsWith(".png"))
+                {
+                    sb.Append("!");
+                }
                 sb.Append("[");
                 sb.Append(node.InnerText);
                 sb.Append("]");
                 sb.Append("(");
-                sb.Append(node.Attributes["href"].Value);
+                sb.Append(link);
                 sb.Append(")");
             }
             else if (node.Name == "br")
