@@ -8,31 +8,27 @@
     using System.Text;
     using System.Xml.Linq;
 
+    class FileRecord
+    {
+        public string Filename { get; set; }
+        public Dictionary<string, string> Payload { get; set; }
+    }
+
     class Program
     {
+        private static bool createJson = false;
+
         static void Main(string[] args)
         {
             string ns = "http://www.w3.org/2005/Atom";
-            XDocument doc = XDocument.Load(@"C:\dev\blog\Convert\blog.xml");
+            string jsonPath = @"C:\dev\blog\data\data.json";
+            XDocument doc = XDocument.Load(@"C:\dev\blog\data\blog.xml");
             XElement root = doc.Root;
-            HashSet<string> names = new HashSet<string>();
-            string[] paths = Directory.GetFiles(@"C:\dev\Competition\Competition", "*.cpp");
-            Dictionary<string, string[]> pathTokensMap = new Dictionary<string, string[]>();
-            foreach (var path in paths)
+            Dictionary<string, string[]> pathTokensMap = GetCompetitionPathTokenMap();
+            List<FileRecord> fileRecords = new List<FileRecord>();
+            if (!createJson)
             {
-                string rawFilename = Path.GetFileNameWithoutExtension(path);
-                StringBuilder filenameBuilder = new StringBuilder();
-                for (int i = 0; i < rawFilename.Length; i++)
-                {
-                    if (i > 0 && char.IsDigit(rawFilename[i]) && !char.IsDigit(rawFilename[i - 1]))
-                    {
-                        filenameBuilder.Append("_");
-                    }
-                    filenameBuilder.Append(char.ToLower(rawFilename[i]));
-                }
-                string filename = filenameBuilder.ToString();
-                string[] tokens = filename.Split('_', StringSplitOptions.RemoveEmptyEntries);
-                pathTokensMap.Add(path, tokens);
+                fileRecords = Newtonsoft.Json.JsonConvert.DeserializeObject<List<FileRecord>>(File.ReadAllText(jsonPath));
             }
             foreach (var element in root.Elements(XName.Get("entry", ns)))
             {
@@ -54,123 +50,173 @@
                     string title = element.Element(XName.Get("title", ns)).Value.Replace("\"", "").Trim();
                     string content = element.Element(XName.Get("content", ns)).Value;
                     string date = element.Element(XName.Get("published", ns)).Value;
-                    string preambleTemplate = @"---
+                    string filename = NormalizeFileName(title);
+                    if (createJson)
+                    {
+                        FileRecord record = new FileRecord
+                        {
+                            Filename = filename,
+                            Payload = new Dictionary<string, string>()
+                        };
+                        fileRecords.Add(record);
+                    }
+                    else
+                    {
+                        try
+                        {
+                            Dictionary<string, string> info = fileRecords.Single(r => r.Filename.Equals(filename)).Payload;
+                            string markdown = ConvertToMarkDown(pathTokensMap, title, content, date, info);
+                            // File.WriteAllText(@"c:\dev\blog\content\posts\" + filename, markdown);
+                        }
+                        catch (Exception ex)
+                        {
+                            // TODO, what is the case 
+                            Console.WriteLine("Failed " + title + " because the page has a " + ex.Message + " tag.");
+                        }
+                    }
+                }
+            }
+            if (createJson)
+            {
+                File.WriteAllText(jsonPath, Newtonsoft.Json.JsonConvert.SerializeObject(fileRecords));
+            }
+        }
+
+        private static string ConvertToMarkDown(Dictionary<string, string[]> pathTokensMap, string title, string content, string date, Dictionary<string, string> info)
+        {
+            string preambleTemplate = @"---
 title: ""{0}""
 date: {1}
 draft: false
 ---
 
 ";
-                    string preamble = string.Format(preambleTemplate, title, date);
-                    HtmlDocument html = new HtmlDocument();
-                    html.LoadHtml(content);
-                    IEnumerable<HtmlNode> children = html.DocumentNode.ChildNodes;
-                    StringBuilder sb = new StringBuilder();
-                    try
+            string preamble = string.Format(preambleTemplate, title, date);
+            HtmlDocument html = new HtmlDocument();
+            html.LoadHtml(content);
+            IEnumerable<HtmlNode> children = html.DocumentNode.ChildNodes;
+            StringBuilder sb = new StringBuilder();
+            sb.Append(preamble);
+            hasCode = false;
+            ConvertChildNodes(html.DocumentNode, sb);
+            string markdown = sb.ToString();
+            while (markdown.Contains("\n\n\n"))
+            {
+                markdown = markdown.Replace("\n\n\n", "\n\n");
+            }
+            sb.Clear();
+            bool inequation = false;
+            foreach (var c in markdown)
+            {
+                if (c == '$')
+                {
+                    if (inequation)
                     {
-                        sb.Append(preamble);
-                        hasCode = false;
-                        ConvertChildNodes(html.DocumentNode, sb);
-                        string filename = string.Join("", title.Where(c => char.IsDigit(c) || char.IsLetter(c) || c == '-' || c == ' ')).Replace(' ', '-').ToLower();
-                        while (filename.Contains("--"))
-                        {
-                            filename = filename.Replace("--", "-");
-                        }
-                        if (filename.EndsWith("-"))
-                        {
-                            filename = filename.Substring(0, filename.Length - 1);
-                        }
-                        if (filename.StartsWith("-"))
-                        {
-                            filename = filename.Substring(1, filename.Length - 1);
-                        }
-                        filename = filename + ".md";
-                        string markdown = sb.ToString();
-                        while (markdown.Contains("\n\n\n"))
-                        {
-                            markdown = markdown.Replace("\n\n\n", "\n\n");
-                        }
-                        sb.Clear();
-                        bool inequation = false;
-                        foreach (var c in markdown)
-                        {
-                            if (c == '$')
-                            {
-                                if (inequation)
-                                {
-                                    sb.Append("\\\\)");
-                                    inequation = false;
-                                }
-                                else
-                                {
-                                    sb.Append("\\\\(");
-                                    inequation = true;
-                                }
-                            }
-                            else
-                            {
-                                sb.Append(c);
-                            }
-                        }
-                        markdown = sb.ToString();
-
-                        // My blog specific - some of the blog entries has a pile of code pasted in it, they are better presented as a gist
-
-                        markdown = markdown.Replace("**Solution**:", "**Solution:**");
-                        markdown = markdown.Replace("**Problem**:", "**Problem:**");
-                        markdown = markdown.Replace("**Code**:", "**Code:**");
-                        markdown = markdown.Replace("**Solution**", "**Solution:**");
-                        markdown = markdown.Replace("**Problem**", "**Problem:**");
-                        markdown = markdown.Replace("**Code**", "**Code:**");
-
-                        string code = "**Code:**";
-                        if (markdown.IndexOf(code) != -1 && !hasCode)
-                        {
-                            markdown = markdown.Substring(0, markdown.IndexOf(code) + code.Length);
-                            string[] titleTokens = title.ToLower().Split(' ', StringSplitOptions.RemoveEmptyEntries);
-                            double bestScore = -1;
-                            string bestPath = null;
-                            foreach (var kvp in pathTokensMap)
-                            {
-                                string[] pathTokens = kvp.Value;
-                                int count = 0;
-                                foreach (var pathToken in pathTokens)
-                                {
-                                    foreach (var titleToken in titleTokens)
-                                    {
-                                        if (titleToken.Equals(pathToken))
-                                        {
-                                            count++;
-                                        }
-                                    }
-                                }
-                                double score = (count + 0.0) / pathTokens.Length;
-                                if (score > bestScore)
-                                {
-                                    bestScore = score;
-                                    bestPath = kvp.Key;
-                                }
-                            }
-                            // TODO: The trick is right most of the time, but it fails sometimes.
-                            // We need a mechanism for reviewing to automatically converted files
-                            // Console.WriteLine(title + " -> " + bestPath);
-                            string githubLink = @"https://github.com/cshung/Competition/blob/main/Competition/" + Path.GetFileName(bestPath);
-                            string append = string.Format("\n\n{{{{<github \"{0}\">}}}}", githubLink);
-                            markdown = markdown + append;
-                        }
-                        File.WriteAllText(@"c:\dev\blog\content\posts\" + filename, markdown);
+                        sb.Append("\\\\)");
+                        inequation = false;
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        // TODO, what is the case 
-                        Console.WriteLine("Failed " + title + " because the page has a " + ex.Message + " tag.");
+                        sb.Append("\\\\(");
+                        inequation = true;
                     }
                 }
+                else
+                {
+                    sb.Append(c);
+                }
             }
-            foreach (var name in names)
+            markdown = sb.ToString();
+
+            // My blog specific - some of the blog entries has a pile of code pasted in it, they are better presented as a gist
+
+            markdown = markdown.Replace("**Solution**:", "**Solution:**");
+            markdown = markdown.Replace("**Problem**:", "**Problem:**");
+            markdown = markdown.Replace("**Code**:", "**Code:**");
+            markdown = markdown.Replace("**Solution**", "**Solution:**");
+            markdown = markdown.Replace("**Problem**", "**Problem:**");
+            markdown = markdown.Replace("**Code**", "**Code:**");
+
+            string code = "**Code:**";
+            if (markdown.IndexOf(code) != -1 && !hasCode)
             {
-                Console.WriteLine(name);
+                markdown = markdown.Substring(0, markdown.IndexOf(code) + code.Length);
+                string[] titleTokens = title.ToLower().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                double bestScore = -1;
+                string bestPath = null;
+                foreach (var kvp in pathTokensMap)
+                {
+                    string[] pathTokens = kvp.Value;
+                    int count = 0;
+                    foreach (var pathToken in pathTokens)
+                    {
+                        foreach (var titleToken in titleTokens)
+                        {
+                            if (titleToken.Equals(pathToken))
+                            {
+                                count++;
+                            }
+                        }
+                    }
+                    double score = (count + 0.0) / pathTokens.Length;
+                    if (score > bestScore)
+                    {
+                        bestScore = score;
+                        bestPath = kvp.Key;
+                    }
+                }
+                // TODO: The trick is right most of the time, but it fails sometimes.
+                // We need a mechanism for reviewing to automatically converted files
+                // Console.WriteLine(title + " -> " + bestPath + ":" + filename);
+                string githubLink = @"https://github.com/cshung/Competition/blob/main/Competition/" + Path.GetFileName(bestPath);
+                string append = string.Format("\n\n{{{{<github \"{0}\">}}}}", githubLink);
+                markdown = markdown + append;
             }
+
+            return markdown;
+        }
+
+        private static string NormalizeFileName(string title)
+        {
+            string filename = string.Join("", title.Where(c => char.IsDigit(c) || char.IsLetter(c) || c == '-' || c == ' ')).Replace(' ', '-').ToLower();
+            while (filename.Contains("--"))
+            {
+                filename = filename.Replace("--", "-");
+            }
+            if (filename.EndsWith("-"))
+            {
+                filename = filename.Substring(0, filename.Length - 1);
+            }
+            if (filename.StartsWith("-"))
+            {
+                filename = filename.Substring(1, filename.Length - 1);
+            }
+            filename = filename + ".md";
+            return filename;
+        }
+
+        private static Dictionary<string, string[]> GetCompetitionPathTokenMap()
+        {
+            string[] paths = Directory.GetFiles(@"C:\dev\Competition\Competition", "*.cpp");
+            Dictionary<string, string[]> pathTokensMap = new Dictionary<string, string[]>();
+            foreach (var path in paths)
+            {
+                string rawFilename = Path.GetFileNameWithoutExtension(path);
+                StringBuilder filenameBuilder = new StringBuilder();
+                for (int i = 0; i < rawFilename.Length; i++)
+                {
+                    if (i > 0 && char.IsDigit(rawFilename[i]) && !char.IsDigit(rawFilename[i - 1]))
+                    {
+                        filenameBuilder.Append("_");
+                    }
+                    filenameBuilder.Append(char.ToLower(rawFilename[i]));
+                }
+                string filename = filenameBuilder.ToString();
+                string[] tokens = filename.Split('_', StringSplitOptions.RemoveEmptyEntries);
+                pathTokensMap.Add(path, tokens);
+            }
+
+            return pathTokensMap;
         }
 
         private static bool hasCode;
@@ -248,6 +294,10 @@ draft: false
                     string append = string.Format("{{{{<github \"{0}\">}}}}", scriptSource.Substring("https://gist-it.appspot.com/".Length));
                     sb.Append(append);
                     hasCode = true;
+                }
+                else
+                {
+                    throw new Exception(node.Name);
                 }
             }
             else if (node.Name == "pre" || node.Name == "span")
