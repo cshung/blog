@@ -66,7 +66,7 @@
                         {
                             Dictionary<string, string> info = fileRecords.Single(r => r.Filename.Equals(filename)).Payload;
                             string markdown = ConvertToMarkDown(pathTokensMap, title, content, date, info);
-                            // File.WriteAllText(@"c:\dev\blog\content\posts\" + filename, markdown);
+                            File.WriteAllText(@"c:\dev\blog\content\posts\" + filename, markdown);
                         }
                         catch (Exception ex)
                         {
@@ -141,39 +141,47 @@ draft: false
             if (markdown.IndexOf(code) != -1 && !hasCode)
             {
                 markdown = markdown.Substring(0, markdown.IndexOf(code) + code.Length);
-                string[] titleTokens = title.ToLower().Split(' ', StringSplitOptions.RemoveEmptyEntries);
-                double bestScore = -1;
-                string bestPath = null;
-                foreach (var kvp in pathTokensMap)
+                string codePath;
+                if (!info.TryGetValue("codepath", out codePath))
                 {
-                    string[] pathTokens = kvp.Value;
-                    int count = 0;
-                    foreach (var pathToken in pathTokens)
-                    {
-                        foreach (var titleToken in titleTokens)
-                        {
-                            if (titleToken.Equals(pathToken))
-                            {
-                                count++;
-                            }
-                        }
-                    }
-                    double score = (count + 0.0) / pathTokens.Length;
-                    if (score > bestScore)
-                    {
-                        bestScore = score;
-                        bestPath = kvp.Key;
-                    }
+                    codePath = GetCodePath(pathTokensMap, title);
                 }
-                // TODO: The trick is right most of the time, but it fails sometimes.
-                // We need a mechanism for reviewing to automatically converted files
-                // Console.WriteLine(title + " -> " + bestPath + ":" + filename);
-                string githubLink = @"https://github.com/cshung/Competition/blob/main/Competition/" + Path.GetFileName(bestPath);
+                string githubLink = @"https://github.com/cshung/Competition/blob/main/Competition/" + Path.GetFileName(codePath);
                 string append = string.Format("\n\n{{{{<github \"{0}\">}}}}", githubLink);
                 markdown = markdown + append;
             }
 
             return markdown;
+        }
+
+        private static string GetCodePath(Dictionary<string, string[]> pathTokensMap, string title)
+        {
+            string[] titleTokens = title.ToLower().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            double bestScore = -1;
+            string bestPath = null;
+            foreach (var kvp in pathTokensMap)
+            {
+                string[] pathTokens = kvp.Value;
+                int count = 0;
+                foreach (var pathToken in pathTokens)
+                {
+                    foreach (var titleToken in titleTokens)
+                    {
+                        if (titleToken.Equals(pathToken))
+                        {
+                            count++;
+                        }
+                    }
+                }
+                double score = (count + 0.0) / pathTokens.Length;
+                if (score > bestScore)
+                {
+                    bestScore = score;
+                    bestPath = kvp.Key;
+                }
+            }
+
+            return bestPath;
         }
 
         private static string NormalizeFileName(string title)
