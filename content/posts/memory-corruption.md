@@ -115,7 +115,7 @@ There are, of course, other pointers writes. For example, updating the brick tab
 # Logging the write
 The key instrument that we can use is the stress log mechanism. By writing a `dprintf` in the code, this macro will append a record in a thread static list of messages that is backed by a memory mapped page on disk. That will log the message with no contention. The log can be subsequently analyzed by a stress log analyzer that can go through the list and find interesting stuff for us.
 
-This PR summarize how I added the instrumentation for the relocation of an address, it should be straightforward to add as needed.
+This [PR](https://github.com/dotnet/runtime/pull/53547) summarize how I added the instrumentation for the relocation of an address, it should be straightforward to add as needed.
 
 # Wrong relocation
 With the logging, I discovered that the issue is caused by a wrong relocation. In particular, the new address is outside of the region's range. But why? We don't know yet. In order to figure it out, it would be nice if we can stop at that moment. Indeed, we can! We can just assert the new address is within range, and whenever that happen, the assert will fire and we will be able to look at the state at that point of time.
@@ -255,7 +255,7 @@ To my excitement, I found the culprit, this line setting the brick to a wrong va
                     (last_marked_obj_start_b - last_marked_obj_end_b), 12);
 ```
 
-This is exciting because it is new code. We have good reason to believe the old code are most likely fine. In this particular case, we confirm that code is wrong and it results in this fix.
+This is exciting because it is new code. We have good reason to believe the old code are most likely fine. In this particular case, we confirm that code is wrong and it results in this [PR](https://github.com/dotnet/runtime/pull/53446) as the fix.
 
 > Debugging tips: If it is a regression, the bug is likely in the new code.
 
