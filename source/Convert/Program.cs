@@ -14,11 +14,11 @@
         public Dictionary<string, string> Payload { get; set; }
     }
 
-    class Program
+    public class Program
     {
         private static bool createJson = false;
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             string ns = "http://www.w3.org/2005/Atom";
             string jsonPath = @"C:\dev\blog\data\data.json";
@@ -65,7 +65,7 @@
                         try
                         {
                             Dictionary<string, string> info = fileRecords.Single(r => r.Filename.Equals(filename)).Payload;
-                            string markdown = ConvertToMarkDown(pathTokensMap, title, content, date, info);
+                            string markdown = ConvertToMarkDown(pathTokensMap, title, content, date, info, filename);
                             File.WriteAllText(@"c:\dev\blog\content\posts\" + filename, markdown);
                         }
                         catch (Exception ex)
@@ -82,7 +82,7 @@
             }
         }
 
-        private static string ConvertToMarkDown(Dictionary<string, string[]> pathTokensMap, string title, string content, string date, Dictionary<string, string> info)
+        private static string ConvertToMarkDown(Dictionary<string, string[]> pathTokensMap, string title, string content, string date, Dictionary<string, string> info, string filename)
         {
             string preambleTemplate = @"---
 title: ""{0}""
@@ -142,13 +142,16 @@ draft: false
             {
                 markdown = markdown.Substring(0, markdown.IndexOf(code) + code.Length);
                 string codePath;
+                bool knownGood = true;
                 if (!info.TryGetValue("codepath", out codePath))
                 {
+                    knownGood = false;
                     codePath = GetCodePath(pathTokensMap, title);
                 }
                 string githubLink = @"https://github.com/cshung/Competition/blob/main/Competition/" + Path.GetFileName(codePath);
                 string append = string.Format("\n\n{{{{<github \"{0}\">}}}}", githubLink);
-                markdown = markdown + append;
+                string validate = knownGood ? "" : "\n\n{{<validate-form "+ filename +" \"" + codePath + "\">}}\n\n";
+                markdown = markdown + validate + append;
             }
 
             return markdown;
