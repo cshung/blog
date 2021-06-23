@@ -76,9 +76,9 @@ Starting from .NET 5.0, we can use the generational aware analysis tool I introd
 To use the feature, set the following environment variables before launching the process.
 
 ```
-set COMPLUS_GCGenAnalysisGen=1
-set COMPLUS_GCGenAnalysisBytes=16E360
-set COMPLUS_GCGenAnalysisIndex=3E8
+set COMPlus_GCGenAnalysisGen=1
+set COMPlus_GCGenAnalysisBytes=16E360
+set COMPlus_GCGenAnalysisIndex=3E8
 ```
 
 We would like to command the runtime to perform a generational aware analysis and capture the moment when a gen 1 GC promoted more than 1.5 MB (`16E360` is `1,500,000` in decimal). To avoid capturing the promoted bytes corresponding to the startup phase, we ignore the first 1,000 GCs (`3E8` is 1,000 in decimal).
