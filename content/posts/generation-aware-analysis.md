@@ -68,7 +68,7 @@ Roughly speaking, every `ShortTermObject` has a weight of 1000 bytes. In each it
 
 To make this post easier for first time readers, let's assume we already observed that the promoted bytes are usually 1MB, but once in a while the promoted bytes spikes up to 2MB. To understand what happened, we would like to capture that moment.
 
-For the curious, at the [end]({{< ref "#collecting-a-trace" >}} "About Us") of this post, we will discuss how we can use the performance infrastructure to discover this information.
+For the curious, at the [end]({{< ref "#diagnosing-a-promoted-byte-spike" >}} "About Us") of this post, we will discuss how we can use the performance infrastructure to discover this information.
 
 # Capturing
 Starting from .NET 5.0, we can use the generational aware analysis tool I introduced in this [PR](https://github.com/dotnet/runtime/pull/40332) to capture the moment when the promotion happens.
@@ -105,6 +105,24 @@ We can analyze the heap as usual, except now types are annotated with their gene
 
 Remember we were capturing this trace when a gen 1 GC promoted more than 1.5 MB, that object explains why that promotion happened. Hopefully this edge is sufficient to discover what is wrong in the code.
 
+# Collecting a dump
+In some scenario, it would be beneficial to collect a dump. For example, if the leaking is caused by setting a static field, it will be shown in PerfView as being held by a pinned object array, but you will not know which field it is. Another common case is the leak is caused by a delegate, in this case, it will be shown as an `Action<T>`, in which you will not know which method is causing the leak. Either case, we can figure that out in the debugger if we have a memory dump.
+
+To collect a dump, we can use the new environment variable introduced in .NET 6
+
+```
+set COMPlus_GCGenAnalysisDump=1
+```
+
+This will collect a dump in addition to the trace we already collected. If a dump is sufficient and you would like to avoid collecting a trace as well, we can disable the tracing by setting this new environment variable:
+
+```
+set COMPlus_GCGenAnalysisTrace=0
+```
+
+The generated dump is called `gcgenaware.dmp` and it can be analyzed with a debugger.
+
+# Diagnosing a promoted byte spike
 In this following, I will describe what we missed earlier. How do we know there is a promoted byte spiking problem to begin with?
 
 # Collecting a trace
