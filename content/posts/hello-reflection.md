@@ -4,7 +4,7 @@ date: 2020-12-05T14:53:55-08:00
 draft: false
 ---
 
-To get started using `ILCompiler.Reflection.ReadyToRun`, let's construct a simple HelloWorld project. If you don't know what it is, please take a look at the [previous post](https://cshung.github.io/posts/introduction-to-ilcompiler-reflection-readytorun/).
+To get started using `ILCompiler.Reflection.ReadyToRun`, let's construct a simple HelloWorld project. If you don't know what it is, please take a look at the [previous post](/posts/introduction-to-ilcompiler-reflection-readytorun/).
 
 # Getting started
 We will create a .NET Core console application. Create a folder named `HelloReflection` and invoke `dotnet new console`.

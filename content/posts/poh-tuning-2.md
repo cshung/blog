@@ -4,7 +4,7 @@ date: 2021-03-01T19:55:26-08:00
 draft: false
 ---
 
-In the [last post](http://cshung.github.io/posts/poh-tuning-1/), we talk about the event tracing infrastructure, it allows us to measure the metrics we wanted to study when we run the program. But what program do we want to run? The program that we will run is called a benchmark. In this post, I will look into the details of the benchmark program.
+In the [last post](/posts/poh-tuning-1/), we talk about the event tracing infrastructure, it allows us to measure the metrics we wanted to study when we run the program. But what program do we want to run? The program that we will run is called a benchmark. In this post, I will look into the details of the benchmark program.
 
 # Overview
 The program that we will run is called `GCPerfSim`. As its name suggests, it simulates workload for the GC to understand its performance. We understand real-life workloads are very variable, therefore `GCPerfSim` has a lot of parameters that allow us to simulate different situations. In order to have some ideas of what these parameters mean, it is imperative for us to look into the program and see how it works and how the parameters impact its execution.
