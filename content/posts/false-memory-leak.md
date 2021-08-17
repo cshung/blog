@@ -197,4 +197,4 @@ In this particular case, we could make things work, by ensuring the `Run` method
 # Conclusion
 This is an in depth investigation into why we are not able to collect the `Node` objects. The investigation demonstrate how to investigate an issue like this. It also explained why does things works the way they were, and provided practical fixes for it.
 
-To reiterate, this is not a managed memory leak. The runtime components never guaranteed that a garbage collection will always collect all the objects when they are no longer referenced. 
+To reiterate, this is not a managed memory leak. The JIT is free to extend the lifetime of objects within a scope therefore prevent the GC from collecting those objects.
