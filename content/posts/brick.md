@@ -11,7 +11,7 @@ A brick table is a data structure that helps finding an object in the heap. To b
 ## What is the find object problem?
 There are various situation that we are given a random pointer inside the heap, and we wanted to find the pointer to the object that is using the address. 
 
-**TODO** describe the situation where this is useful.
+There are a couple of reasons why would get a random pointer on the heap. Interior pointers on the stack is on of them, and it is described in [this](/posts/fake-interior-pointer) post.
 
 ## The naive solution
 A GC heap is arranged as a sequence of segments. The beginning of a segment is always an object, and object are closely packed (with certain alignment constraints). Given an object, we can determine its size, and therefore advance to the next one.
@@ -62,7 +62,8 @@ There is no previous brick for the first brick, but in that case, we can simply 
 
 Now we know what the brick table entries are good for, there must be some code that produces and maintain these entries. Turn out there are a lot of call sites to `set_brick()` so we will not examine them all. The general theme is that we set the brick when:
 
-1. During allocation, we know where the objects are placed, and
-2. During compaction, we know where the objects are moving to.
+1. During allocation, we know where the objects are placed, 
+2. During find_first_object, we also know where the objects are placed, and
+3. During compaction, we know where the objects are moving to.
 
 I am sure this is not an exhaustive list, there are other cases too, but that is beyond my understanding for now.
