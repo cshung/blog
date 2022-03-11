@@ -83,7 +83,7 @@ set COMPlus_GCGenAnalysisIndex=3E8
 
 We would like to command the runtime to perform a generational aware analysis and capture the moment when a gen 1 GC promoted more than 1.5 MB (`16E360` is `1,500,000` in decimal). To avoid capturing the promoted bytes corresponding to the startup phase, we ignore the first 1,000 GCs (`3E8` is 1,000 in decimal).
 
-After the process is launched, it will create two files. 
+After the process is launched, it will create two files in the current directory:
 
 - `gcgenaware.nettrace`
 - `gcgenaware.nettrace.completed`
