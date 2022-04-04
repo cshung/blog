@@ -221,7 +221,7 @@ Looking at the proof, we can see how we could relax the assumption. We note that
 
 In order to proceed with step 9, if it happens that both \\( \alpha \\) and \\( \beta \\) are type L, we can still use the induction hypothesis. If exactly one of \\( \alpha \\) and \\( \beta \\) are type S, then we can still argue that the original order should not mess up the relative ordering of L type and S type. The last case, that both \\( \alpha \\) and \\( \beta \\) are type S, is the true problem. We do need to make sure they were ordered properly before the algorithm starts.
 
-It is just too good to be true if we can assume nothing and get the L type suffix sorted, turn out we still must sort some S type suffixes, but not all of them. It matters only if they cab be \\( \alpha \\) or \\( \beta \\) above. This type of S suffixes has a special property that they are the immediate right hand side of a L type suffix. In other words, they are the left most S type suffixes, or LMS for short.
+It is just too good to be true if we can assume nothing and get the L type suffix sorted, turn out we still must sort some S type suffixes, but not all of them. It matters only if they can be \\( \alpha \\) or \\( \beta \\) above. This type of S suffixes has a special property that they are the immediate right hand side of a L type suffix. In other words, they are the left most S type suffixes, or LMS for short.
 
 Suppose we can get the LMS suffixes sorted, then we can use the inductive sort to get the L type suffixes sorted. Now the problem how about the S type suffixes?
 
