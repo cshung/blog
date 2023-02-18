@@ -21,7 +21,7 @@ SSH can be used as a SOCKS server. To do that, we need to make sure ssh localhos
 
 Using the -D option, we can make it runs a SOCK server listening on the localhost port 10086 as follows:
 
-```
+```txt
 ssh -N -D "0.0.0.0:10086" localhost
 ```
 
@@ -29,7 +29,7 @@ The `-D` is the key option that allow SSH to serve as a SOCKS server, the -N tel
 
 By default, port 10086 is not exposed to the public. Therefore we cannot use the SOCKS server remotely yet, but we can test that on the Azure VM as follows:
 
-```
+```txt
 curl --socks5-hostname localhost:10086 http://www.google.com/
 ```
 
@@ -38,7 +38,7 @@ This will instruct curl to download the Google homepage using localhost:10086 as
 # Part 3 - SSH tunnel
 Next, we want to use the remote SOCKS server securely. We will do that using SSH port mapping using this command:
 
-```
+```txt
 ssh -N -L 12580:localhost:10086 <azure-vm-ip>
 ```
 
@@ -46,14 +46,14 @@ The `-L` option indicates that the port 12580 on the machine will be mapped to t
 
 Of course, we can test that locally:
 
-```
+```txt
 curl --socks5-hostname localhost:12580 http://www.google.com/
 ```
 
 # Part 4 - Launch Chrome with proxy
 Last but not least, here is how I do it in OSX. Using a command line option works much better than the system settings. To make sure things work, it is best to use the incognito mode to avoid cookies.
 
-```
+```txt
 /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --proxy-server="socks://localhost:12580"
 ```
 

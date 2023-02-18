@@ -31,7 +31,7 @@ As of now, the run will crash on the induced GC due to this stack. The rest of t
 ## Symptoms
 
 Here is the stack of the crash.
-```
+```txt
 * thread #1, name = 'tid_307', queue = 'com.apple.main-thread', stop reason = signal SIGSEGV
   * frame #0: 0x00000001031c0270 libcoreclr.dylib`MethodTable::GetBaseSize(this=0x0000000000000010) at gcenv.mono.h:73:72
     frame #1: 0x00000001031c0125 libcoreclr.dylib`WKS::my_get_size(ob=0x000000010376f8a0) at gc.cpp:9707:26
@@ -96,7 +96,7 @@ To figure out this fact, I added some debug printf to the code. They're at line 
 
 The printf can be correlated with the object address, in particular, this pair is interesting because they reported inconsistent sizes.
 
-```
+```txt
 
 ...
 
@@ -119,7 +119,7 @@ That doesn't look good, the same object is reported with different sizes when th
 
 We can look deeper into the issue by setting a breakpoint on `andrew_debug()`. The method is conditioned to break on the 220th allocation (which we know from the log the size is inconsistent, here is a stack).
 
-```
+```txt
   * frame #0: 0x00000001029b2ab4 libcoreclr.dylib`::andrew_debug() at coregc-mono.cpp:588:2
     frame #1: 0x00000001029b2b81 libcoreclr.dylib`::mono_gc_alloc_obj(vtable=0x0000000100868090, size=312) at coregc-mono.cpp:617:3
     frame #2: 0x00000001029b2c25 libcoreclr.dylib`::mono_gc_alloc_array(vtable=0x0000000100868090, size=304, max_length=32, bounds_size=16) at coregc-mono.cpp:634:32

@@ -1,0 +1,16 @@
+<div id="nav-border" class="container">
+    <nav id="nav" class="nav justify-content-center">
+        {{ range .Site.Menus.main }}
+        <a class="nav-link" href="{{ .URL }}">
+        {{ if .Pre }}
+        {{ $icon := printf "<i data-feather=\"%s\"></i> " .Pre | safeHTML }}
+        {{ $icon }}
+        {{ end }}
+        {{ $text := print .Name | safeHTML }}
+        {{ $text }}
+        </a>
+        {{ end }}
+        <a class="nav-link" href="#" id="toggleDarkModeButton"><i data-feather="sun"></i></a>
+        <span style="padding:5px"><input type="text" id="queryTextField"></span><a class="nav-link" href="#" id="searchButton"><i data-feather="search"></i></a>
+    </nav>
+</div>

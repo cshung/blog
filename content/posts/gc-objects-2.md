@@ -32,7 +32,7 @@ gc_heap::mark_object_simple (uint8_t** po THREAD_NUMBER_DCL)
 
 Imagine this is run during the mark phase, if we discover an unmarked object, then we traverse into its pointers and recursively mark the objects it points to. There are some complexity with respect to managing the stack, as the objects graph gets deep, we might ran out of stack space. In this post, we will ignore that and focus into how GC discovered the pointed objects. The magic ingredient here is obviously `go_through_object_cl` in `gc.cpp` line 18602-18627.
 
-```
+```txt
 // 1 thing to note about this macro:
 // 1) you can use *parm safely but in general you don't want to use parm
 // because for the collectible types it's not an address on the managed heap.
@@ -63,13 +63,13 @@ Imagine this is run during the mark phase, if we discover an unmarked object, th
 
 We have two cases, either we have `COLLECTIBLE_CLASS` defined or not. In the `COLLECTIBLE_CLASS` case, we simply have an extra object (i.e. the class object) to mark that is implicitly 'pointed' by the object, otherwise, we simply delegate to `go_through_object_nostart` in gc.cpp line 18600.
 
-```
+```txt
 #define go_through_object_nostart(mt,o,size,parm,exp) {go_through_object(mt,o,size,parm,o,ignore_start,(o + size),exp); }
 ```
 
 Again, it delegates to `go_through_object`. It has an interesting option that can take an extra `start` parameter, but in this case we are not using it. Here we reach the most interesting macro that does the work.
 
-```
+```txt
 #define go_through_object(mt,o,size,parm,start,start_useful,limit,exp)      \
 {                                                                           \
     CGCDesc* map = CGCDesc::GetCGCDescFromMT((MethodTable*)(mt));           \

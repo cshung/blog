@@ -75,7 +75,7 @@ Starting from .NET 5.0, we can use the generational aware analysis tool I introd
 
 To use the feature, set the following environment variables before launching the process.
 
-```
+```txt
 set COMPlus_GCGenAnalysisGen=1
 set COMPlus_GCGenAnalysisBytes=16E360
 set COMPlus_GCGenAnalysisIndex=3E8
@@ -110,13 +110,13 @@ In some scenario, it would be beneficial to collect a dump. For example, if the 
 
 To collect a dump, we can use the new environment variable introduced in .NET 6
 
-```
+```txt
 set COMPlus_GCGenAnalysisDump=1
 ```
 
 This will collect a dump in addition to the trace we already collected. If a dump is sufficient and you would like to avoid collecting a trace as well, we can disable the tracing by setting this new environment variable:
 
-```
+```txt
 set COMPlus_GCGenAnalysisTrace=0
 ```
 
@@ -130,7 +130,7 @@ To detect the fact that there is a leak of a pile of ephemeral objects into the 
 
 I ran PerfView with `GCCollectOnly` and collected a trace. In and administrative prompt, we can run
 
-```
+```txt
 perfview /GCCollectOnly /nogui collect
 ```
 
@@ -142,7 +142,7 @@ The GC performance infrastructure is available as a subdirectory in the [dotnet/
 ## Preparing for analysis
 To get started, unzip the collected trace and rename the `etl` file to `GenAware.etl`. I placed the file under `C:/GenAware` folder. To help the infrastructure, we create a [`test_status_file`](https://github.com/dotnet/performance/blob/main/src/benchmarks/gc/docs/test_status_files.md). the daunting appearance of the file is only apparent, we can get by with a tiny file with just these 3 lines.
 
-```
+```txt
 success: true
 trace_file_name: GenAware.etl
 process_id: 1348

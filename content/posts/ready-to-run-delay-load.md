@@ -39,7 +39,7 @@ We will use [ILSpy.ReadyToRun](https://github.com/icsharpcode/ILSpy/wiki/ILSpy.R
 # Disassembling the code
 Using ILSpy.ReadyToRun, here is the method disassembled.
 
-```
+```txt
 ; void ReadyToDebug.Program.Main(string[])
 ; Prolog
 00000000000017C0 57                   push      rdi
@@ -91,27 +91,27 @@ This will show the normal debugging session, and we will start debugging it.
 # Analyzing the trace
 We would like to know what happened on the indirect calls. So naturally we would like to set a breakpoint to it. Right now, `ReadyToDebug.dll` is not even loaded in the process yet. So the first thing to do is to run until it is loaded. We can do that using this command
 
-```
+```txt
 0:000> sxe ld ReadyToDebug
 0:000> g
 ```
 
 This will run until `ReadyToDebug.dll` is loaded, and when it does, the debugger shows:
 
-```
+```txt
 ...
 ModLoad: 000001e2`f7b50000 000001e2`f7b54000   c:\Garbage\ReadyToDebug\bin\Debug\net6.0\win-x64\publish\ReadyToDebug.dll
 ```
 
 The first address, `000001e2f7b50000`, is the base address of the module. It may or may not be the same on other machines (and even executions on the same machine). But once we have this address, then we have this very simple formula:
 
-```
+```txt
 virtual address = base address + relative virtual address
 ```
 
 The virtual refers to virtual memory (which is used in practically any OS today). So if we ignore the word virtual, this is basically saying the address is the base address plus the relative address. Therefore, or call site is simply `000001e2f7b50000 + 17d2 = 000001e2f7b517d2`. We will set a breakpoint there.
 
-```
+```txt
 0:000> bp 000001e2f7b517d2
 0:000> g
 ...
@@ -137,7 +137,7 @@ As we can see, the breakpoint hit 3 times, and then the process terminates. Of c
 # The first call
 Now we will go back in time to see what happened in the first call.
 
-```
+```txt
 0:000> !tt 171F7:9
 Setting position: 171F7:9
 0:000> dq 000001e2`f7b520a0 L1
@@ -155,7 +155,7 @@ The key thing to notice here is that we set `eax` to 0 and pushed two more value
 
 Next, we look at the last jump.
 
-```
+```txt
 0:000> dq 000001e2`f7b52088 L1
 000001e2`f7b52088  00007ffd`39f349a0
 0:000> uf 00007ffd`39f349a0
@@ -212,7 +212,7 @@ Looking at just the stack, this is simply another trunk. The key is what `Extern
 
 Note that the last jump is NOT an indirect jump, all it does is simply jumping to where `rax` points to:
 
-```
+```txt
 0:000> u 00007ffd`39f3499a
 coreclr!ExternalMethodFixupPatchLabel:
 00007ffd`39f3499a 48ffe0          jmp     rax
@@ -232,7 +232,7 @@ Further downstream, we will simply run the `Console.WriteLine` implementation, s
 # The third call
 Now you might wonder, why do I call the function 3 times to show you how a method call is done? The reason is that calling `ExternalMethodFixupWorker` is expensive, and we don't want want to call it repeatedly after we already know where it should be. Let's inspect the 3rd call now.
 
-```
+```txt
 0:000> !tt 1A9A1:16
 0:000> dq 000001e2`f7b520a0 L1
 000001e2`f7b520a0  00007ffc`da3a2a68
@@ -242,7 +242,7 @@ Now you might wonder, why do I call the function 3 times to show you how a metho
 
 The code changed! This is why we called it multiple times. At the third call, we no longer do the `DelayLoad_MethodCall` work and instead just jump directly to the implementation. Something must have changed the code!
 
-```
+```txt
 0:000> !ttpw 000001e2`f7b520a0
 Time Travel Position: 1A995:217 [Unindexed] Index
 0:000> k

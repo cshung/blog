@@ -33,7 +33,7 @@ We will take a look at these components one by one, having a focus on the on-the
 ## Runtime Event Emission
 To understand how the runtime emits events, we would like to get the debugger to stop at the point where it is serializing the event. The magic function we wanted to stop is `EventPipeWriteEventGCHeapStats_V2`. If we run an application with tracing turned on using EventPipe, we should see this breakpoint got hit with the following call stack:
 
-```
+```txt
 CoreCLR!EventPipeWriteEventGCHeapStats_V2
 CoreCLR!FireEtwGCHeapStats_V2
 CoreCLR!GCToCLREventSink::FireGCHeapStats_V2
@@ -45,7 +45,7 @@ CoreCLR!WKS::GCHeap::UpdatePostGCCounters
 ### Some metaprogramming tricks
 You will never find the implementation of the first two frames in our code because it is code-generated during the build process. This is nothing new, serializers are typically code generated at compile time. The third frame is just a forwarder to avoid GC being coupled to the generated code. The most interesting frame is actually frame 5, where the event originates. It uses a `FIRE_EVENT` macro, which is defined as follow in gceventstatus.h line 267:
 
-```
+```txt
 #define FIRE_EVENT(name, ...) GCEventFire##name(__VA_ARGS__)
 ```
 

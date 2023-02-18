@@ -15,7 +15,7 @@ The rest of this post will talk about the various things I did to get it to work
 
 # Dead on arrival - triple fault on QEMU
 My first step is simply running `xv6` using QEMU. Unfortunate, we have a dead on arrival, this is what is shown:
-```
+```txt
 qemu-system-i386 -serial mon:stdio -drive file=fs.img,index=1,media=disk,format=raw -drive file=xv6.img,index=0,media=disk,format=raw -smp 2 -m 512 
 EAX=80010011 EBX=00010094 ECX=00000000 EDX=000001f0
 ESI=00010094 EDI=00000000 EBP=00007bf8 ESP=00007bdc
@@ -62,7 +62,7 @@ Error
 
 When I first see this error. I thought maybe the image contained some SSE instructions and the emulator does not support it well. Especially I read this on the front page of `v86` GitHub:
 
-```
+```txt
 An x86 compatible CPU. The instruction set is around Pentium 1 level. Some features are missing, more specifically:
 ...
 - MMX, SSE
@@ -107,7 +107,7 @@ With the fix, now the boot moves on further, but we are stuck with ...
 # Infinite loop
 Opening the JavaScript console, we see these messages
 
-```
+```txt
 ...
 log.js:13 Previous message repeated 2048 times
 log.js:13 17:05:54+347 [IO  ] Read from unmapped memory space, addr=0xFEE00300
@@ -118,7 +118,7 @@ log.js:13 Previous message repeated 2048 times
 It is always the same address, very suspicious to be an infinite loop. This time around, the VM does not stop, so let's make it stop. Somewhere in the JavaScript code, there must be a `console.log`, so I find that one out (in log.js) and put a breakpoint there.
 
 With that I extract a stack trace of what is going on:
-```
+```txt
 "Error
     at eval (eval at do_the_log (http://localhost:8000/src/log.js:13:9), <anonymous>:1:1)
     at do_the_log (http://localhost:8000/src/log.js:13:9)
@@ -186,7 +186,7 @@ Reading through the `mpconfig` function, it searches for the MP configuration ta
 
 Since I didn't get to the panic line, I suspect conf is not NULL. Let's prove that. I changed the `== 0` to `!= 0`. Here is what I get:
 
-```
+```txt
 SeaBIOS (version rel-1.10.0-39-g3fdabae-dirty-20170530_143849-nyu)
 Booting from Floppy
 Boot failed: could not read the boot disk
@@ -241,7 +241,7 @@ To:
 ```
 
 Now we see this, the address is always `800f6ef0`. Now we can investigate what populated that address.
-```
+```txt
 SeaBIOS (version rel-1.10.0-39-g3fdabae-dirty-20170530_143849-nyu)
 Booting from Floppy
 Boot failed: could not read the boot disk
@@ -259,7 +259,7 @@ The stack above already told us one of them: `CPU.read32s`. Reading through the 
 
 Unfortunately the argument to these functions use physical address, and `800f6ef0` is obviously a virtual address. I just guessed the physical address is `f6ef0` and added these instrumentation to the `debug_read` and `debug_write` method as follow:
 
-```
+```txt
     if (addr <= 0xf6ef0 && 0xf6ef0 < addr + size)
     {
         console.log("Hit");
@@ -304,7 +304,7 @@ mpinit(void)
 
 We can also inspect the register values by invoking `this.debug.dumpregs()`:
 
-```
+```txt
 this.debug.dump_regs()
 log.js:13 16:08:00+268 [CPU ] eax=0x000F6EF0 ecx=0x0000000A edx=0x00000F16 ebx=0x000F6F78   ds=0x0010 es=0x0010 fs=0x0000
 log.js:13 16:08:00+269 [CPU ] esp=0x8010B570 ebp=0x8010B598 esi=0x000F6E90 edi=0x800F6E80   gs=0x0000 cs=0x0008 ss=0x0010
@@ -328,7 +328,7 @@ That was just luck, xv6 used to work without SMP. All I needed to do is to undo 
 # Unmapped memory
 With the fix, now we are running into another infinite loop with this output:
 
-```
+```txt
 ...
 log.js:13 16:49:49+855 [IO  ] Write to unmapped memory space, addr=0x0802BDD0 value=0x01010101
 log.js:13 16:49:49+856 [IO  ] Write to unmapped memory space, addr=0x0802BDD4 value=0x01010101
@@ -366,7 +366,7 @@ Unlike earlier, we are now stuck. The code is a generic function that doesn't gi
 
 The current stack pointer can be found using `this.debug.dump_regs()`.
 
-```
+```txt
 this.debug.dump_regs()
 log.js:13 17:12:36+136 [CPU ] eax=0x01010101 ecx=0x000000B6 edx=0x8802B000 ebx=0x00010000   ds=0x0010 es=0x0010 fs=0x0000
 log.js:13 17:12:36+137 [CPU ] esp=0x8010B550 ebp=0x8010B558 esi=0x8E000000 edi=0x8802BD28   gs=0x0000 cs=0x0008 ss=0x0010
@@ -409,7 +409,7 @@ Now we have some context, 0x801024EB, which is `kfree`. Further ahead of time, i
 
 Reading through `kinit2`, it is just freeing the memory by filling it with patterns. The real problem is that the range is defined by a symbolic constant `PHYSTOP` which is hardcoded to 0xE000000. This is suspicious, how could the kernel know how much memory there is? The answer is actually written on the manual, on page 37 (or the last page of chapter 2, whatever version you are reading)
 
-```
+```txt
 Xv6 should determine the actual RAM configuration, instead of assuming 240MB
 ```
 
@@ -418,7 +418,7 @@ Now the mystery is solved. All we need to get around that infinite loop is to se
 # HaveDisk1
 I promise this is the last hurdle. With the memory configuration set right. The code runs further an give this error:
 
-```
+```txt
 SeaBIOS (version rel-1.10.0-39-g3fdabae-dirty-20170530_143849-nyu)
 Booting from Floppy
 Boot failed: could not read the boot disk

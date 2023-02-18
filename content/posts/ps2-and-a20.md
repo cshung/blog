@@ -34,13 +34,13 @@ To figure out how interrupt works in v86, we set a breakpoint earlier in the `tr
 
 By turning on `CPU_LOG_VERBOSE` at the very beginning of the `cpu.js`, I see this log statement.
 
-```
+```txt
 22:54:03+720 [CPU ] mode=prot/32 paging=1 iopl=0 cpl=0 if=0 cs:eip=0x0008:0x80105D8A cs_off=0x00000000 flgs=0x000092 (  a s    ) ss:esp=0x0010:0x8010B548 ssize=1 in int end
 ```
 
 The `int end` caught my attention. Does it mean interrupt processing ends? Searching in the code show me that is exactly the case, the code emitting the log is right at the end of `call_interrupt_vector` method. Setting a breakpoint on this function reveals how interrupt is processed. The stack gives one example on how an interrupt is processed.
 
-```
+```txt
 CPU.call_interrupt_vector (cpu.js:1801)
 CPU.pic_call_irq (cpu.js:3701)
 PIC.acknowledge_irq (pic.js:157)
@@ -69,7 +69,7 @@ With a bit of code reading, we notice `acknowledge_irq` checks if `this.requeste
 # Programmable Interrupt Controller
 It isn't hard to figure out the `check_irq` function set the `this.requested_irq` value. Setting a breakpoint on that line yield a very common stack.
 
-```
+```txt
 PIC.check_irqs (pic.js:117)
 PIC.set_irq (pic.js:305)
 CPU.device_raise_irq (cpu.js:3734)
@@ -90,7 +90,7 @@ It looks like the upstream function, `raise_irq` is called whenever the keyboard
 
 Ideally, we would like to know when is the last time `next_byte_is_ready` is set. By setting a breakpoint on all places where `next_byte_is_ready` is set. We got around 10 hits during the boot process, and the last hit was raised by this stack:
 
-```
+```txt
 PS2.kbd_irq (ps2.js:225)
 PS2.port60_write (ps2.js:637)
 IO.port_write8 (io.js:343)
@@ -104,7 +104,7 @@ CPU.do_run (cpu.js:1115)
 
 And the `this.previous_ip` is `31771`, which correspond to this line in the boot loader.
 
-```
+```txt
   # Physical address line A20 is tied to zero so that the first PCs 
   # with 2 MB would run software that assumed 1 MB.  Undo that.
   ...

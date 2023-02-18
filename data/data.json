@@ -1,7 +1,9 @@
 [
   {
     "Filename": "rosalind-ordering-strings-of-varying-length-lexicographically.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "leetcode-search-in-a-binary-search-tree.md",
@@ -9,7 +11,9 @@
   },
   {
     "Filename": "rosalind-k-mer-composition.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "leetcode-cheapest-flights-within-k-stops.md",
@@ -25,7 +29,9 @@
   },
   {
     "Filename": "rosalind-maximum-matchings-and-rna-secondary-structures.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "leetcode-coin-change-2.md",
@@ -33,7 +39,9 @@
   },
   {
     "Filename": "rosalind-counting-phylogenetic-ancestors.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "leetcode-random-pick-with-weight.md",
@@ -41,7 +49,9 @@
   },
   {
     "Filename": "rosalind-catalan-numbers-and-rna-secondary-structures.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "leetcode-two-city-scheduling.md",
@@ -49,7 +59,9 @@
   },
   {
     "Filename": "rosalind-sorting-by-reversals.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "leetcode-online-stock-span.md",
@@ -57,7 +69,9 @@
   },
   {
     "Filename": "rosalind-reversal-distance.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "leetcode-find-the-town-judge.md",
@@ -65,7 +79,9 @@
   },
   {
     "Filename": "rosalind-creating-a-distance-matrix.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "leetcode-check-if-it-is-a-straight-line.md",
@@ -73,7 +89,9 @@
   },
   {
     "Filename": "rosalind-speeding-up-motif-finding.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "leetcode-cousins-in-binary-tree.md",
@@ -89,27 +107,39 @@
   },
   {
     "Filename": "rosalind-perfect-matchings-and-rna-secondary-structures.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-open-reading-frames.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-transitions-and-transversions.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-enumerating-oriented-gene-orderings.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-interleaving-two-motifs.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-edit-distance-alignment.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "leetcode-n-queens-ii.md",
@@ -185,63 +215,93 @@
   },
   {
     "Filename": "rosalind-edit-distance.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-finding-a-shared-spliced-motif.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "PATCH"
+    }
   },
   {
     "Filename": "rosalind-introduction-to-set-operations.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-finding-a-spliced-motif.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-counting-subsets.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-introduction-to-random-strings.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-genome-assembly-as-shortest-superstring.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-completing-a-tree.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-partial-permutations.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-longest-increasing-subsequence.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-enumerating-k-mers-lexicographically.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-rna-splicing.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-locating-restriction-sites.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-calculating-protein-mass.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-finding-a-protein-motif.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "leetcode-meeting-rooms-ii.md",
@@ -269,71 +329,105 @@
   },
   {
     "Filename": "rosalind-enumerating-gene-orders.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-inferring-mrna-from-protein.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-independent-alleles.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "PATCH"
+    }
   },
   {
     "Filename": "rosalind-calculating-expected-offspring.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-overlap-graphs.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-finding-a-shared-motif.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-mortal-fibonacci-rabbits.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-consensus-and-profile.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-finding-a-motif-in-dna.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-translating-rna-into-protein.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-mendels-first-law.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-counting-point-mutations.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-computing-gc-content.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-rabbits-and-recurrence-relations.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-complementing-a-strand-of-dna.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-transcribing-dna-into-rna.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "rosalind-counting-dna-nucleotides.md",
-    "Payload": {}
+    "Payload": {
+      "comment": "LGTM"
+    }
   },
   {
     "Filename": "leetcode-trapping-rain-water.md",

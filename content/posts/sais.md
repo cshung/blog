@@ -62,7 +62,7 @@ Then we introduce the concept of 'S' type and 'L' type suffix as follow:
 
 Following our banana example, the suffix types are as follow:
 
-```
+```txt
 banana$
 LSLSLLS
 ```
@@ -74,7 +74,7 @@ The only tricky part is if the initial characters are the same, then we cannot j
 
 In this case, we claim that the type is simply the type of the one on its right hand side. Here is an example.
 
-```
+```txt
 paab$
  ?SLS
 ```
@@ -119,7 +119,7 @@ Although we display that as a table, in code we will simply represent it as an a
 # Sorting the L type suffixes given the S types are sorted
 Suppose we have the S type suffixes sorted (i.e. they are placed in the right positions in the suffix array), we can easily get the fully sorted suffix array using this surprising algorithm.
 
-```
+```txt
 Scan the array from left to right
 If the current suffix is not the full string
   If the suffix to the left of that suffix is L type
@@ -228,7 +228,7 @@ Suppose we can get the LMS suffixes sorted, then we can use the inductive sort t
 # Sorting the S type suffixes as well
 Intuition tells us L and S are symmetric, can we run the inductive sort in reverse and sort the S type suffixes given the L type suffixes. Yes we can.
 
-```
+```txt
 Scan the array from right to left
 If the current suffix is not the full string
   If the suffix to the left that suffix is S type
@@ -265,13 +265,13 @@ Suppose we can recursively solve the problem of sorting the LMS suffixes, then w
 
 The only problem is that sorting the LMS suffixes is not the same problem as creating a suffix array, so it is unclear how we would recursively solve a different problem. Unless we turn it into one. Looking at our banana again:
 
-```
+```txt
 banana$
 LSLSLLS
 ```
 
 The LMS suffixes are 
-```
+```txt
 anana$
 ana$
 $
@@ -279,7 +279,7 @@ $
 
 Wouldn't it be cool if we could rename the substrings into an alphabet this way:
 
-```
+```txt
 pq$
 q$
 $

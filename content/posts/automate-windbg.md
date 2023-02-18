@@ -12,7 +12,7 @@ WinDBG supports using the `-c` command line argument to specify a startup comman
 
 Here is a very simple example:
 
-```
+```txt
 windbg.exe -c q cmd.exe
 ```
 
@@ -25,13 +25,13 @@ I do not want to screw myself, so I will use a script file that does not contain
 
 Let's first create an autodbg.script is a file with a single command `q`. Then type this into the command prompt, what do we see?
 
-```
+```txt
 windbg.exe -c $$>a<autodbg.script cmd.exe
 ```
 
 We see the debugger do not quit, and a new file named `a` is created. The problem is that the `>` and `<` operators are interpreted by the command prompt as redirection operators, we need to escape them using the caret `^` sign as follow:
 
-```
+```txt
 windbg.exe -c $$^>a^<autodbg.script cmd.exe
 ```
 
@@ -40,7 +40,7 @@ Now it works to quit the prompt.
 # Handling crash
 Suppose a process is launched without a debugger, if it crashes, the process is just gone. To debug that crash, it is possible to tell the system to launch WinDBG and debug when a crash happens. To do so, you run the following command in an elevated command prompt:
 
-```
+```txt
 windbg.exe -I
 ```
 
@@ -64,25 +64,25 @@ This is obviously an access violation. If we launch this process outside of Visu
 # Automate Crash Handling
 When we invoke `windbg.exe -I`, all it does is that it writes to the registry. The key:
 
-```
+```txt
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AeDebug
 ```
 
 contains a value:
 
-```
+```txt
 Debugger
 ```
 
 pointing to the debugger command as follow:
 
-```
+```txt
 "c:\toolssw\debuggers\amd64\windbg.exe" -p %ld -e %ld -g
 ```
 
 That makes me ponder, is it possible to add the `-c` option above to automate some of the processing? The answer is yes!
 
-```
+```txt
 "c:\toolssw\debuggers\amd64\windbg.exe" -c $$>a<c:\temp\autodbg.script -p %ld -e %ld -g
 ```
 
@@ -90,7 +90,7 @@ Note that this is not the command prompt, so we no longer need to escape the `>`
 
 For Visual Studio user, the original value is this, you can restore it after the WinDBG session if you wish.
 
-```
+```txt
 "C:\WINDOWS\system32\vsjitdebugger.exe" -p %ld -e %ld
 ```
 
@@ -120,14 +120,14 @@ This is compiled into `c:\temp\work.exe`. Obviously, the program simply write ea
 
 The next natural step is to automate the launching of this executable. We write this script and launch it as usual.
 
-```
+```txt
 .shell -i- -o- c:\temp\work.exe 
 q
 ```
 
 You would expect the debugger would quit after running the command, but it actually doesn't. Inspecting `c:\temp\output.txt` would find
 
-```
+```txt
 c:\temp\work.exe 
 ;q
 ```
@@ -137,13 +137,13 @@ Now the mystery is clear. WinDBG is interpreting everything after the .shell as 
 How can we solve this problem? We can make a separate script that contains only the `.shell` command and chain it using the master script as follow:
 
 `autodbg.script`
-```
+```txt
 $$>a<run.script
 q
 ```
 
 `run.script`
-```
+```txt
 .shell -i- -o- c:\temp\work.exe "what a test"
 ```
 
@@ -155,19 +155,19 @@ The post documented the process of automating WinDBG in various scenarios. Here 
 ## Command Line
 Here is the command to run autodbg.script on startup:
 
-```
+```txt
 windbg.exe -c $$^>a^<autodbg.script cmd.exe
 ```
 
 ## Registry for crash processing
 
 Put this string into 
-```
+```txt
 "c:\toolssw\debuggers\amd64\windbg.exe" -c $$>a<c:\temp\autodbg.script -p %ld -e %ld -g
 ```
 
 this registry key 
-```
+```txt
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AeDebug:Debugger
 ```
 

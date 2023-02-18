@@ -13,7 +13,7 @@ As reported in [this issue](https://github.com/dotnet/runtime/issues/76929), we 
 # A first look
 When the program crashes at the object equality check. Here is the point of failure:
 
-```
+```txt
 ...
   146 00007ffc`25e47c3e 4889542438      mov     qword ptr [rsp+38h],rdx
   146 00007ffc`25e47c43 488bca          mov     rcx,rdx
@@ -41,7 +41,7 @@ The missing of the background GC start message make me question about the reliab
 
 At the end of the stress log analyzer run, we have this message:
 
-```
+```txt
 Used file size:  1.895 GB, still available: 30.105 GB, 10 threads total, 6 overwrote earlier messages
 Number of messages examined: 38.964634 million, printed: 0
 ```
@@ -80,7 +80,7 @@ It is at this moment I figured an idea. The log say the object is marked, but it
 
 This is fruitful, and we have found these interesting log statements.
 
-```
+```txt
 931c  38.090888200 : `GC l=10086`         Background cleared because 3: 000001EE99923C08 00000000F74CC91E 1 15555554 15555554
 8d9c  36.840606300 : `GC l=10086`         Background marked: 000001EE99923DE8 00000000F74CC91E 40000000 45555555 45555555
 9564  36.840606300 : `GC l=10086`         Background marked: 000001EE99923DC8 00000000F74CC91E 10000000 15555555 15555555

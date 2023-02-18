@@ -26,7 +26,7 @@ When the access violation happens, `mT` is a nullptr and therefore it cannot be 
 # Analyzing
 Looking around the memory close to `ob`, it just a pile of 0, nothing interesting there.
 
-```
+```txt
 0:015> ?? ob
 class Object * 0x00000192`dcffff78
    +0x000 m_pMethTab       : (null) 
@@ -43,7 +43,7 @@ class Object * 0x00000192`dcffff78
 
 Without further hint, I used the StressLogAnalyzer to search for the address, and we found something interesting:
 
-```
+```txt
 >r-v:0x00000192dcffff78
  4a0  10.646502000 : `GC l=4`             -192dcffff78-
  4a0  10.646500800 : `GC l=3`             (a8)[192dcffe020->192dcffff78, NA: [19293086980(1240954528), 192930888d8[: 1f58(1), x: 192dcffff78 (C)
@@ -58,7 +58,7 @@ We wanted to make allocation really fast, and nothing is faster than just adding
 
 A picture worth a thousand words, here is how the allocation context looks like:
 
-```
+```txt
 |user object 1|...| last user object |000 ............... 000|
                                      ^                       ^
                                      ptr                     limit

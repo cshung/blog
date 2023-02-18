@@ -19,12 +19,12 @@ int gc_heap::get_region_plan_gen_num (uint8_t* obj)
 
 Obviously, this is a bug related to regions. One of the key property of region is that all managed object lies within a single range. Therefore we can check.
 
-```
+```txt
 0:011> dv
             obj = 0x0000040a`187ffdc0
 ```
 
-```
+```txt
 0:011> ?? coreclr!svr::global_region_allocator
 class SVR::region_allocator
    +0x000 global_region_start : 0x00000203`40400000
@@ -49,7 +49,7 @@ gc_heap::check_demotion_helper (uint8_t** pval, uint8_t* parent_obj)
 
 So `pval` is pointing to the bad pointer. Looking at `pval` itself, we see:
 
-```
+```txt
 0:011> ?? pval
 unsigned char ** 0x00000203`d30d89e8
 ```
@@ -63,7 +63,7 @@ Without a better guide, let's take a look at the memory around it. What is it su
 
 The `!lno` command in SOS is meant for that, now we have:
 
-```
+```txt
 0:011> !lno  0x00000203`d30d89e8
 Before:  00000203d30d89e0           32 (0x20)	SimpleRefPayLoad
 After:   00000203d30d8a00           40 (0x28)	ReferenceItemWithSize+ReferenceItemWithSizeNonFinalizable
@@ -72,7 +72,7 @@ Heap local consistency confirmed.
 
 Let's take a look at the object
 
-```
+```txt
 0:011> !do 00000203d30d89e0 
 Name:        SimpleRefPayLoad
 MethodTable: 00007ffb490d2548
@@ -173,7 +173,7 @@ Given the `new_address` is wrong, one would naturally want to figure out how it 
 
 I experimented with making the variable `node` out of the current scope, but somehow that make the reproduction of the bug difficult (for reason I still don't understand), therefore we need to resort to other techniques. I did that by looking at the disassembly. Here I can talk a little about that disassembly technique. Here is the truncated stack:
 
-```
+```txt
 0:009> k
  # Child-SP          RetAddr           Call Site
 00 00000034`8787a950 00007ffb`e9c0497a coreclr!DbgAssertDialog+0x34c [C:\dev\runtime\src\coreclr\utilcode\debug.cpp @ 700] 
@@ -182,7 +182,7 @@ I experimented with making the variable `node` out of the current scope, but som
 ```
 The return address of the `validate` frame will be a location within the `relocate_address` function, so we can ask for the function disassembly of it.
 
-```
+```txt
 0:009> uf 00007ffb`e9be9823
 coreclr!SVR::gc_heap::relocate_address [C:\dev\runtime\src\coreclr\gc\gc.cpp @ 29358]:
 29358 00007ffb`e9be95a0 4489442418      mov     dword ptr [rsp+18h],r8d
@@ -194,7 +194,7 @@ coreclr!SVR::gc_heap::relocate_address [C:\dev\runtime\src\coreclr\gc\gc.cpp @ 2
 
 It looks like we are storing the result of `tree_search` to `[rsp+48h]`, that is where we will inspect. To do so, we need to figure out the `rsp` value of that frame:
 
-```
+```txt
 0:009> .frame -r 2
 ...
 ... rsp=000000348787abc0 ...
@@ -205,7 +205,7 @@ It looks like we are storing the result of `tree_search` to `[rsp+48h]`, that is
 
 The node relocation distance is obtained just by reinterpreting a few bytes before it as the `plug_and_reloc` structure, so we can look at that.
 
-```
+```txt
 0:009> ?? (svr::plug_and_reloc*)(0x000001c5`58bff468 - 0x18)
 struct SVR::plug_and_reloc * 0x000001c5`58bff450
    +0x000 reloc            : 0n1947109160040
@@ -215,7 +215,7 @@ struct SVR::plug_and_reloc * 0x000001c5`58bff450
 
 Now it is obvious that the `reloc` is suspiciously high. Using the same idea, we inspect the memory around it.
 
-```
+```txt
 0:009> !lno 0x000001c5`58bff468
 Before:  000001c558bff448           32 (0x20)	SimpleRefPayLoad
 Current: 000001c558bff468         2968 (0xb98)	System.Byte[]
@@ -227,7 +227,7 @@ Now it is fairly obvious that somehow we got the `node` wrong. The space before 
 
 Following our logic, we should take a look at the tree search. But I decided I will give some faith to the existing code there and look at its source, `brick` and `brick_entry`. 
 
-```
+```txt
 0:009> ?? brick
 unsigned int64 0n645119
 0:009> ?? (old_address - this->lowest_address)/4096

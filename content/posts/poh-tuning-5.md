@@ -84,7 +84,7 @@ ttest_ind(cat1['CountIsGen0'], cat2['CountIsGen0'], equal_var=False)
 
 The code produced this result:
 
-```
+```txt
 Ttest_indResult(statistic=16.317779324341963, pvalue=4.106432582405551e-05)
 ```
 

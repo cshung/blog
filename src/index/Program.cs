@@ -5,6 +5,14 @@
     using System.IO;
     using System.Linq;
     using System.Text;
+    using Newtonsoft.Json;
+
+    public class JavaScriptIndex
+    {
+        public Dictionary<string, List<int>> Terms { get; set; }
+        public string[] Documents { get; set; }
+        public int[] DocumentLength { get; set; }
+    }
 
     internal static class Program
     {
@@ -12,6 +20,23 @@
         {
             string[] documents = Directory.GetFiles(@"../../content/posts", "*.md");
             Index index = Index(documents);
+            JavaScriptIndex jsIndex = new JavaScriptIndex();
+            jsIndex.Terms = new Dictionary<string, List<int>>();
+            foreach (string term in index.Terms.Keys)
+            {
+                List<int> values = new List<int>();
+                List<Tuple<int, int>> hits = index.InvertedIndex[index.Terms[term]];
+                foreach (Tuple<int, int> hit in hits)
+                {
+                    values.Add(hit.Item1);
+                    values.Add(hit.Item2);
+                }
+                jsIndex.Terms.Add(term, values);
+            }
+            jsIndex.Documents = documents;
+            jsIndex.DocumentLength = index.DocumentLength.Select(d => (int)(d * d)).ToArray();
+            System.IO.File.WriteAllText("index.js", "var index = " + JsonConvert.SerializeObject(jsIndex));
+            /*
             while (true)
             {
                 Console.WriteLine("Please enter the query");
@@ -23,6 +48,7 @@
                     Console.WriteLine("{0} {1}", url, result.Item2);
                 }
             }
+            */
         }
 
         private static Index Index(string[] documents)

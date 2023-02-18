@@ -26,14 +26,14 @@ The expectation is that since the worker thread eliminated all but one node, we 
 # The repro steps
 To reproduce the issue, we need a way to observe how many objects are there still alive on the heap. To do that, we first build the project. For my convenience, this investigation is done on Windows, x64. But I expect exactly the same happens on Linux ARM as well.
 
-```
+```txt
 C:\FalseLeakRepro> dotnet build
 C:\FalseLeakRepro> windbg bin\Debug\net5.0\FalseLeakRepro.exe
 ```
 
 In the debugger, we let the process go. To make sure the objects goes away, I used 'R', 'G', 'H'. That make sure the work thread terminates and we forced full blocking gen 2 GC. Then we take a look at the heap using the `!DumpHeap` SOS extension command.
 
-```
+```txt
 0:000> !DumpHeap
 ...
 00007ffdce947768       10          320 FalseLeakRepro.Node
@@ -45,7 +45,7 @@ So we have reproduced the problem! All the 10 nodes are still on the heap after 
 # Analysis
 Next, we wanted to understand why they are still on the heap. We can use the `!gcroot` SOS extension command to do that. First, we take a look at the individual objects with this type:
 
-```
+```txt
 0:000> !DumpHeap -mt 00007ffdce947768
          Address               MT     Size
 0000025a2e2536c0 00007ffdce947768       32     
@@ -68,7 +68,7 @@ Total 10 objects
 
 This gave us the addresses to the 10 objects, now we pick a random one (to avoid picking the `Head` or `Tail` which is just not interesting) and ask for the GC root.
 
-```
+```txt
 0:000> !gcroot 0000025a2e2537d8
 Thread 464c:
     000000C7FC57E170 00007FFDCE876E03 FalseLeakRepro.Program.Run(System.String[]) [C:\dev\blog-samples\FalseLeakRepro\Program.cs @ 124]
@@ -91,13 +91,13 @@ The stack frame is supposed to have parameters, return address and local variabl
 # Looking at JITDump
 While we could look at the disassembly and try to figure it out, it is much more informational to let the JIT tells us what is going on with [`JITDump`](https://github.com/dotnet/runtime/blob/main/docs/design/coreclr/jit/viewing-jit-dumps.md). We need to patch the runtime with a debug build, and enable dumping the method with the following environment variable:
 
-```
+```txt
 set COMPLUS_JITDump=FalseLeakRepro.Program:Run(System.String[]):this
 ```
 
 Here are the relevant parts - the full JITDump can be found [here](https://raw.githubusercontent.com/cshung/blog-samples/main/FalseLeakRepro/debug.bug.jitdump.txt):
 
-```
+```txt
 IL_0024  7d 05 00 00 04    stfld        0x4000005
 IL_0029  02                ldarg.0     
 IL_002a  7b 05 00 00 04    ldfld        0x4000005
@@ -134,7 +134,7 @@ The right way to read this is to start from the bottom. We have a variable inter
 
 ILSpy can be an awesome tool to map IL back to C# source code using the IL with C# view. Here is the relevant part:
 
-```
+```txt
 	// _myList.Head.Data = new object();
 	IL_0029: ldarg.0
 	IL_002a: ldfld class FalseLeakRepro.List FalseLeakRepro.Program::_myList
@@ -152,7 +152,7 @@ Also, in debug mode, you want to iterate with the code fast. By leaving all the 
 
 In the view of this, let's experiment with a release build. By repeating the steps: I confirmed that the memory leak is gone.
 
-```
+```txt
 0:000> !DumpHeap
 ...
 00007ffdcdc06508        1           32 FalseLeakRepro.Node
@@ -163,7 +163,7 @@ It remains the analyze what happen under the optimized build.
 
 Here are the relevant parts - the full JITDump can be found [here](https://raw.githubusercontent.com/cshung/blog-samples/main/FalseLeakRepro/release.jitdump.txt):
 
-```
+```txt
 lvaGrabTemp returning 10 (V10 tmp3) called for impAppendStmt.
 
 

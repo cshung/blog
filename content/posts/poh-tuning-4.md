@@ -26,7 +26,7 @@ Using the knob that we can control, here are some constraints on \\( a \\) and \
 As an example, we could pick \\( a \\) to be 100 and \\( b \\) to be 10. That would lead to:
 
 In the pinning handle case:
-```
+```txt
 sohsi=1000/100=10
 sohpi=100/10=10
 pohar=0
@@ -34,7 +34,7 @@ pohsi=0
 ```
 
 And in the POH case
-```
+```txt
 sohsi=(1000-10)/(100-10)=11
 sohpi=0
 pohar=10
@@ -44,7 +44,7 @@ pohsi=1
 # The GC Performance infrastructure
 To put the design into practice, we will use the GC performance infrastructure. It is basically a test harness. It takes in a benchmark description, run `GCPerfSim` as instructed with trace collection enabled. The tool also automates the parsing of the trace and provide the data to us for further analysis. It is much easier to figure what it is by looking at an example, here is what I wrote for the benchmarks above:
 
-```
+```txt
 vary: coreclr
 test_executables:
   defgcperfsim: C:\dev\performance\artifacts\bin\GCPerfSim\release\netcoreapp5.0\GCPerfSim.dll

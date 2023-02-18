@@ -23,6 +23,7 @@
         public string Date { get; set; }
         public string FileName { get; set; }
         public string NextUrl { get; set; }
+        public List<string> Tags { get; set; }
     }
 
     public class Converter
@@ -31,7 +32,7 @@
         private const string xmlPath = @"../../data/blog.xml";
         private const string jsonPath = @"../../data/data.json";
 
-        private const bool generateFinal = false;
+        private const bool generateFinal = true;
 
         private List<Post> posts;
         private List<FileRecord> fileRecords;
@@ -53,8 +54,10 @@
             XDocument doc = XDocument.Load(xmlPath);
             XElement root = doc.Root;
             int index = 0;
+            
             foreach (var element in root.Elements(XName.Get("entry", ns)))
             {
+                List<string> tags = new List<string>();
                 bool post = false;
                 foreach (var category in element.Elements(XName.Get("category", ns)))
                 {
@@ -66,6 +69,10 @@
                         {
                             post = true;
                         }
+                    } else if (scheme.Equals("http://www.blogger.com/atom/ns#"))
+                    {
+                        string term = category.Attribute("term").Value;
+                        tags.Add(term);
                     }
                 }
                 if (post)
@@ -92,8 +99,10 @@
                         Content = content,
                         Date = date,
                         FileName = fileName,
+                        Tags = tags,
                     });
                 }
+                
             }
             int first = -1;
             int last = -1;
@@ -232,7 +241,7 @@
             List<FileRecord> fileRecords = JsonConvert.DeserializeObject<List<FileRecord>>(File.ReadAllText(jsonPath));
             Converter converter = new Converter(fileRecords);
             // TODO: Switch here is reset Json
-            converter.GenerateJson();
+            // converter.GenerateJson();
             converter.ConvertAll();
         }
     }
@@ -248,6 +257,7 @@
         private string date;
         private string fileName;
         private string nextUrl;
+        private List<string> tags;
         private Dictionary<string, string> info;
 
         private List<string> links;
@@ -266,6 +276,7 @@
             this.title = post.Title;
             this.content = post.Content;
             this.date = post.Date;
+            this.tags = post.Tags;
             this.info = info;
             this.fileName = post.FileName;
             this.nextUrl = post.NextUrl;
@@ -277,10 +288,11 @@
 title: ""{0}""
 date: {1}
 draft: false
+tags: [{2}]
 ---
 
 ";
-            string preamble = string.Format(preambleTemplate, title, date);
+            string preamble = string.Format(preambleTemplate, title, date, string.Join(",", tags));
             HtmlDocument html = new HtmlDocument();
             html.LoadHtml(content);
             IEnumerable<HtmlNode> children = html.DocumentNode.ChildNodes;

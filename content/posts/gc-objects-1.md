@@ -21,7 +21,7 @@ while (/* some conditions ... */)
 
 At the first line, `x` points to an object. Using the `size` macro, it computes the size of the object, adjusted using the `Align` macro, we found the next object, and go on with the scan. Therefore we can visualize the heap as follow:
 
-```
+```txt
 Small Address -> Large Address
 |Object Space|Alignment Pad|Object Space|Alignment Pad|....
 ```
@@ -31,12 +31,12 @@ Therefore it is important that an object describes its size accurately.
 # How size is computed?
 The `size` macro is defined in `gc.cpp` line 9548.
 
-```
+```txt
 #define size(i) my_get_size (header(i))
 ```
 
 The `header` macro is defined in `gc.cpp` line 3794.
-```
+```txt
 #define header(i) ((CObjectHeader*)(i))
 ```
 
@@ -78,7 +78,7 @@ size_t Align (size_t nbytes, int alignment=ALIGNCONST)
 
 where `DATA_ALIGNMENT` is defined in `gcenv.base.h` line 476.
 
-```
+```txt
 #define DATA_ALIGNMENT sizeof(uintptr_t)
 ```
 

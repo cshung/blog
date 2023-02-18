@@ -10,7 +10,7 @@ When CoreCLR performs a garbage collection, the GC asks the VM where the roots a
 
 Suppose we have a pointer on the stack pointing to an object on the GC heap, it will look like this:
 
-```
+```txt
 Stack:                            Heap
 0x00001000: ..........            0x00F00000:
 ..........: ..........            ..........: ..........
@@ -25,7 +25,7 @@ In this case, the VM will report `0x0000C040` as the pointer to the pointer of t
 
 Because the GC might move the object at `0X00C21212` during a compaction, therefore it must know the address storing that address so that it can relocate that address as follow:
 
-```
+```txt
 Stack:                            Heap
 0x00001000: ..........            0x00F00000:
 ..........: ..........            ..........: ..........

@@ -16,13 +16,13 @@ Next, we will want to attach the Java debugger. To do that, we need to know the 
 
 If you have MAUI installed with the Android workload, you should have the Android SDK already. On my windows machine, the tool is available on
 
-```
+```txt
 C:\Program Files (x86)\Android\android-sdk\platform-tools\adb.exe
 ```
 
 The tool has many options, but we will use only two of them. To find the process ID, we will use this command
 
-```
+```txt
 C:\AndroidDebug>adb.exe jdwp
 ```
 
@@ -30,7 +30,7 @@ C:\AndroidDebug>adb.exe jdwp
 
 The command will list all the ID of all the process that expose the Java Debug Wire Protocol. That will include our app, and typically this is the last one in the output list.
 
-```
+```txt
 C:\AndroidDebug>adb jdwp
 528
 691
@@ -47,7 +47,7 @@ Next, we will use the Android Debug Bridge to expose the debug port so that we c
 
 The command to perform the port forwarding is as follow:
 
-```
+```txt
 C:\AndroidDebug>adb.exe forward tcp:12345 jdwp:6204
 ```
 

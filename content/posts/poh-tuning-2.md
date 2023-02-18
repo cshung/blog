@@ -11,7 +11,7 @@ The program that we will run is called `GCPerfSim`. As its name suggests, it sim
 
 There are various modes in `GCPerfSim`, in this post, we will only focus on these parameters. They are the default from the `normal_server` benchmark coming from the performance infrastructure. We will cover the performance infrastructure itself in the next post.
 
-```
+```txt
 -tc 6 -tagb 100.0 -tlgb 2.0 -lohar 0 -pohar 0 -sohsi 50 -lohsi 0 -pohsi 0 -sohsr 10-4000 -lohsr 102400-204800 -pohsr 100-204800 -sohpi 50 -lohpi 0 -sohfi 0 -lohfi 0 -pohfi 0 -allocType reference -testKind time
 ```
 

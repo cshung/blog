@@ -29,14 +29,14 @@ Alternatively, we can use `git rebase upstream/main`. This will make sure all th
 
 The difference of these are best illustrated by an example. Suppose the feature branch started when we have 2 commits:
 
-```
+```txt
 v2 <- fork/main
 v1
 ```
 
 Now we are working on the feature, and created a few commits
 
-```
+```txt
 f2 <- fork/feature
 f1
 v2 <- fork/main
@@ -45,7 +45,7 @@ v1
 
 At this time, the upstream moved forward:
 
-```
+```txt
 v4 <- upstream/main
 v3
 v2 <- fork/main
@@ -54,7 +54,7 @@ v1
 
 and we wanted to stay in sync, we could have done a merge like this
 
-```
+```txt
 f3 <- fork/feature
 f2
 f1
@@ -66,7 +66,7 @@ The `f3` is a merge commit. It contains all changes from `v3`, `v4`, and perhaps
 
 We could also do a rebase:
 
-```
+```txt
 f2
 f1
 v4
@@ -86,7 +86,7 @@ I could have cherry-picked the 3 of them, but when the list of commits get long,
 ## Squashing a branch
 In GitHub, there is a squash and merge button that can turn a PR into a single commit and merge into the upstream. This is something we can do locally as follow:
 
-```
+```txt
 git checkout main
 git checkout -b temp1
 git checkout feature
@@ -106,7 +106,7 @@ The fifth command makes sure `temp2` can be interpreted as a change on top of `t
 The magic command is the seventh command. On the temp1 branch, we wanted to create a single commit that represents the change to `temp1` overall from `temp2`. The merge command itself won't commit, it will just put it in the staging area, and therefore we need the last command to create a commit for it.
 
 Just remember to remove the temp branches when they are done.
-```
+```txt
 git branch -D temp1
 git branch -D temp2
 ```

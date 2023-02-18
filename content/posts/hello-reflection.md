@@ -9,7 +9,7 @@ To get started using `ILCompiler.Reflection.ReadyToRun`, let's construct a simpl
 # Getting started
 We will create a .NET Core console application. Create a folder named `HelloReflection` and invoke `dotnet new console`.
 
-```
+```txt
 C:\dev>mkdir HelloReflection
 
 C:\dev>cd HelloReflection
@@ -99,7 +99,7 @@ foreach (var method in reader.Methods)
 
 That will show us a long list of method signatures.
 
-```
+```txt
 void Microsoft.CodeAnalysis.EmbeddedAttribute..ctor()
 void System.Runtime.CompilerServices.IsUnmanagedAttribute..ctor()
 void System.Runtime.CompilerServices.NullableAttribute..ctor(byte)
