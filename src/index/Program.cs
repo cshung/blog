@@ -5,12 +5,14 @@
     using System.IO;
     using System.Linq;
     using System.Text;
+    using System.Text.RegularExpressions;
     using Newtonsoft.Json;
 
     public class JavaScriptIndex
     {
         public Dictionary<string, List<int>> Terms { get; set; }
         public string[] Documents { get; set; }
+        public string[] Titles { get; set; }
         public int[] DocumentLength { get; set; }
     }
 
@@ -19,7 +21,8 @@
         private static void Main(string[] args)
         {
             string[] documents = Directory.GetFiles(@"../../content/posts", "*.md");
-            Index index = Index(documents);
+            string[] titles = new string[documents.Length];
+            Index index = Index(documents, titles);
             JavaScriptIndex jsIndex = new JavaScriptIndex();
             jsIndex.Terms = new Dictionary<string, List<int>>();
             foreach (string term in index.Terms.Keys)
@@ -34,6 +37,7 @@
                 jsIndex.Terms.Add(term, values);
             }
             jsIndex.Documents = documents;
+            jsIndex.Titles = titles;
             jsIndex.DocumentLength = index.DocumentLength.Select(d => (int)(d * d)).ToArray();
             System.IO.File.WriteAllText("index.js", "var index = " + JsonConvert.SerializeObject(jsIndex));
             /*
@@ -51,7 +55,7 @@
             */
         }
 
-        private static Index Index(string[] documents)
+        private static Index Index(string[] documents, string[] titles)
         {
             // TODO: Implement inverse document frequency
             var terms = new Dictionary<string, int>();
@@ -61,8 +65,8 @@
             {
                 string path = documents[documentId];
                 string content = File.ReadAllText(path);
-                string[] documentTerms = ParseContent(content);
-                // TODO: Stemming
+                var (title, documentTerms) = ParseContent(content);
+                titles[documentId] = title;
                 var termFrequencies = new Dictionary<string, int>();
                 foreach (string term in documentTerms)
                 {
@@ -169,9 +173,12 @@
             }
         }
 
-        private static string[] ParseContent(string content)
+        private static (string, string[]) ParseContent(string content)
         {
-            // TODO: Improve parsing
+            string[] lines = content.Split(new[] { '\r', '\n'});
+            string title = lines[1];
+            Regex titleExtractor = new Regex(@"[^""]*""([^""]*)""");
+            title = titleExtractor.Match(title).Groups[1].Captures[0].Value;
             StringBuilder sb = new StringBuilder();
             foreach (var c in content)
             {
@@ -184,7 +191,7 @@
                     sb.Append(' ');
                 }
             }
-            return sb.ToString().Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(t => t.ToLower()).ToArray();
+            return (title, sb.ToString().Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(t => t.ToLower()).ToArray());
         }
     }
 }

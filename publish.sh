@@ -1,3 +1,8 @@
+cd src/index
+dotnet run
+cd ../..
+mv src/index/index.js ./static/index.js
+echo "Index rebuilt."
 mv ../cshung.github.io/.git ..
 rm -rf ../cshung.github.io
 export HUGO_ENV=production

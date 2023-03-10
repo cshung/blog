@@ -71,7 +71,7 @@
       if (term in index.Terms)
       {
         for (i = 0; i < index.Terms[term].length; i += 2) {
-          var doc = index.Documents[index.Terms[term][i]];
+          var doc = index.Terms[term][i];
           var count = index.Terms[term][i + 1];
           if (doc in result) {
             result[doc] += count;
@@ -85,9 +85,8 @@
     $("#content").empty();
     for (var key in result) {
       $("#content").append($('<a>', {
-        href: key.replace("../../content","").replace(".md",""),
-        // TODO: Use title from front matter
-        text: key
+        href: index.Documents[key].replace("../../content","").replace(".md",""),
+        text: index.Titles[key]
       }));
       $("#content").append($('<br>'));
     }

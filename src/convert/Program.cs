@@ -323,12 +323,22 @@ tags: [{2}]
             }
             sb.Clear();
             bool inequation = false;
+            StringBuilder equationBuilder = new StringBuilder();
             foreach (var c in markdown)
             {
                 if (c == '$')
                 {
                     if (inequation)
                     {
+                        
+                        StringBuilder temp = sb;
+                        sb = equationBuilder;
+                        equationBuilder = temp;
+                        String equation = equationBuilder.ToString();
+                        // This is a hack to get around the fact that the markdown parser does not like backslashes
+                        equation = equation.Replace("\\\\", "\\\\\\\\");
+                        equationBuilder.Clear();
+                        sb.Append(equation);
                         sb.Append("\\\\)");
                         inequation = false;
                     }
@@ -336,6 +346,9 @@ tags: [{2}]
                     {
                         sb.Append("\\\\(");
                         inequation = true;
+                        StringBuilder temp = sb;
+                        sb = equationBuilder;
+                        equationBuilder = temp;
                     }
                 }
                 else
