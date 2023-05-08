@@ -2,7 +2,7 @@
   {
     "Filename": "rosalind-ordering-strings-of-varying-length-lexicographically.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
@@ -12,7 +12,7 @@
   {
     "Filename": "rosalind-k-mer-composition.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
@@ -30,7 +30,7 @@
   {
     "Filename": "rosalind-maximum-matchings-and-rna-secondary-structures.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
@@ -40,7 +40,7 @@
   {
     "Filename": "rosalind-counting-phylogenetic-ancestors.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
@@ -50,7 +50,7 @@
   {
     "Filename": "rosalind-catalan-numbers-and-rna-secondary-structures.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
@@ -60,7 +60,7 @@
   {
     "Filename": "rosalind-sorting-by-reversals.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
@@ -70,7 +70,7 @@
   {
     "Filename": "rosalind-reversal-distance.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
@@ -80,7 +80,7 @@
   {
     "Filename": "rosalind-creating-a-distance-matrix.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
@@ -90,7 +90,7 @@
   {
     "Filename": "rosalind-speeding-up-motif-finding.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
@@ -108,37 +108,37 @@
   {
     "Filename": "rosalind-perfect-matchings-and-rna-secondary-structures.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-open-reading-frames.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-transitions-and-transversions.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-enumerating-oriented-gene-orderings.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-interleaving-two-motifs.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-edit-distance-alignment.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
@@ -216,91 +216,91 @@
   {
     "Filename": "rosalind-edit-distance.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-finding-a-shared-spliced-motif.md",
     "Payload": {
-      "comment": "PATCH"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-introduction-to-set-operations.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-finding-a-spliced-motif.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-counting-subsets.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-introduction-to-random-strings.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-genome-assembly-as-shortest-superstring.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-completing-a-tree.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-partial-permutations.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-longest-increasing-subsequence.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-enumerating-k-mers-lexicographically.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-rna-splicing.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-locating-restriction-sites.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-calculating-protein-mass.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-finding-a-protein-motif.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
@@ -330,103 +330,103 @@
   {
     "Filename": "rosalind-enumerating-gene-orders.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-inferring-mrna-from-protein.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-independent-alleles.md",
     "Payload": {
-      "comment": "PATCH"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-calculating-expected-offspring.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-overlap-graphs.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-finding-a-shared-motif.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-mortal-fibonacci-rabbits.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-consensus-and-profile.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-finding-a-motif-in-dna.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-translating-rna-into-protein.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-mendels-first-law.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-counting-point-mutations.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-computing-gc-content.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-rabbits-and-recurrence-relations.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-complementing-a-strand-of-dna.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-transcribing-dna-into-rna.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
     "Filename": "rosalind-counting-dna-nucleotides.md",
     "Payload": {
-      "comment": "LGTM"
+      "comment": "DONE"
     }
   },
   {
@@ -1038,7 +1038,7 @@
     "Payload": {}
   },
   {
-    "Filename": "leetcode-patching-array.md",
+    "Filename": "leetcode-DONEing-array.md",
     "Payload": {}
   },
   {
