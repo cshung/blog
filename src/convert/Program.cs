@@ -32,7 +32,12 @@
         private const string xmlPath = @"../../data/blog.xml";
         private const string jsonPath = @"../../data/data.json";
 
-        private const bool generateFinal = true;
+        // We should start with generateForPublish = false to generate a subset of posts for testing
+        // Then we review them, leaving either LGTM or PATCH in the comment field
+        // Then we can set generateForPublish = true to generate all posts
+        // Finally we manually patch what we need to patch.
+        // Then we publish, and then update JSON to DONE so that we don't generate them again.
+        public const bool generateForPublish = true;
 
         private List<Post> posts;
         private List<FileRecord> fileRecords;
@@ -130,12 +135,14 @@
         private bool ShouldGenerate(int i)
         {
             string comment;
-            if (this.fileRecords[i].Payload.TryGetValue("comment", out comment) && comment.Equals("LGTM"))
+            if (generateForPublish)
             {
-                return generateFinal;
-            } else {
-                // TODO, additional filtering
-                return !generateFinal && (this.fileRecords[i].Filename.IndexOf("osalind") != -1);
+                return this.fileRecords[i].Payload.TryGetValue("comment", out comment) && (comment.Equals("LGTM") || comment.Equals("PATCH"));
+            }
+            else
+            {
+                // This is the current set of post to be processed for publishing
+                return this.fileRecords[i].Filename.IndexOf("spoj") != -1;
             }
         }
 
@@ -300,7 +307,7 @@ tags: [{2}]
             sb.Append(preamble);
 
             string comment = null;
-            if (!info.TryGetValue("comment", out comment) || !comment.Equals("LGTM"))
+            if (!Converter.generateForPublish && (!info.TryGetValue("comment", out comment) || !comment.Equals("LGTM")))
             {
                 if (comment == null)
                 {
@@ -525,7 +532,16 @@ tags: [{2}]
             }
             else
             {
-                throw new Exception(node.Name);
+                StringBuilder inner = new StringBuilder();
+                ConvertChildNodes(node, inner);
+                string innerText = inner.ToString().Trim();
+                sb.Append(" ~~[");
+                sb.Append(node.Name);
+                sb.Append("]~~ ");
+                sb.Append(innerText);
+                sb.Append(" ~~[/");
+                sb.Append(node.Name);
+                sb.Append("]~~ ");
             }
         }
 

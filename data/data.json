@@ -539,7 +539,10 @@
   },
   {
     "Filename": "spoj-problem-set-classical-candy-i.md",
-    "Payload": {}
+    "Payload": {
+      "codepath": "../../../Competition/Competition/SPOJ_CANDY.cpp",
+      "comment": "DONE"
+    }
   },
   {
     "Filename": "leetcode-sum-of-subsequence-widths.md",
@@ -2371,7 +2374,10 @@
   },
   {
     "Filename": "spoj-problem-set-classical-fishmonger.md",
-    "Payload": {}
+    "Payload": {
+      "codepath": "../../../Competition/Competition/SPOJ_FISHER.cpp",
+      "comment": "DONE"
+    }
   },
   {
     "Filename": "uva-problem-10911-forming-quiz-teams.md",
@@ -2439,7 +2445,10 @@
   },
   {
     "Filename": "spoj-problem-set-classical-horrible-queries.md",
-    "Payload": {}
+    "Payload": {
+      "codepath": "../../../Competition/Competition/SPOJ_HORRIBLE.cpp",
+      "comment": "DONE"
+    }
   },
   {
     "Filename": "uva-problem-10077-the-stern-brocot-number-system.md",
@@ -2451,11 +2460,17 @@
   },
   {
     "Filename": "spoj-problem-set-classical-light-switching-2nd-attempt.md",
-    "Payload": {}
+    "Payload": {
+      "codepath": "../../../Competition/Competition/SPOJ_LITE_2.cpp",
+      "comment": "DONE"
+    }
   },
   {
     "Filename": "spoj-problem-set-classical-light-switching-1st-attempt.md",
-    "Payload": {}
+    "Payload": {
+      "codepath": "../../../Competition/Competition/SPOJ_LITE_1.cpp",
+      "comment": "DONE"
+    }
   },
   {
     "Filename": "uva-problem-957-popes.md",
@@ -2463,7 +2478,10 @@
   },
   {
     "Filename": "spoj-problem-set-classical-life-the-universe-and-everything.md",
-    "Payload": {}
+    "Payload": {
+      "codepath": "../../../Competition/Competition/SPOJ_TEST.cpp",
+      "comment": "DONE"
+    }
   },
   {
     "Filename": "uva-problem-714-copying-books.md",
@@ -2635,7 +2653,10 @@
   },
   {
     "Filename": "spoj-problem-set-classical-the-next-palindrome.md",
-    "Payload": {}
+    "Payload": {
+      "codepath": "../../../Competition/Competition/SPOJ_PALIN.cpp",
+      "comment": "DONE"
+    }
   },
   {
     "Filename": "starting-of-the-blog.md",
