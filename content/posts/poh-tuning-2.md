@@ -62,8 +62,8 @@ Since we assumed the weights, so everything is known, except \\( N \\), so we wi
 
 $$
 \begin{eqnarray}
-\frac{R_{soh}}{R_{loh}} &=& \frac{W_{soh}(E[S_{soh}] - O) + O}{W_{loh}(E[S_{loh}] - O)} \\\\
-\frac{R_{soh}}{R_{poh}} &=& \frac{W_{soh}(E[S_{soh}] - O) + O}{W_{poh}(E[S_{poh}] - O)}
+\frac{R_{soh}}{R_{loh}} &=& \frac{W_{soh}(E[S_{soh}] - O) + 1000 O}{W_{loh}(E[S_{loh}] - O)} \\\\
+\frac{R_{soh}}{R_{poh}} &=& \frac{W_{soh}(E[S_{soh}] - O) + 1000 O}{W_{poh}(E[S_{poh}] - O)}
 \end{eqnarray}
 $$
 
@@ -71,8 +71,8 @@ Now we think of the weights as the unknowns. Note that some of them are in the d
 
 $$ 
 \begin{eqnarray}
-R_{soh} (E[S_{loh}] - O) W_{loh} &=& R_{loh} (E[S_{soh}] - O) W_{soh} + R_{loh}O \\\\
-R_{soh} (E[S_{poh}] - O) W_{poh} &=& R_{poh} (E[S_{soh}] - O) W_{soh} + R_{poh}O
+R_{soh} (E[S_{loh}] - O) W_{loh} &=& R_{loh} (E[S_{soh}] - O) W_{soh} + 1000 R_{loh}O \\\\
+R_{soh} (E[S_{poh}] - O) W_{poh} &=& R_{poh} (E[S_{soh}] - O) W_{soh} + 1000 R_{poh}O
 \end{eqnarray}
 $$
 
