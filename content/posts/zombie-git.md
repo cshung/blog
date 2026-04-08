@@ -117,7 +117,7 @@ if (recvline(data, &buf))
 
 When `git remote-https` reports an authentication failure, `recvline()` fails (the helper's output pipe closes), and git calls `exit(128)` directly — never going through `disconnect_helper()`, never calling `finish_command()`, never calling `waitpid()`.
 
-## Why `atexit`
+## Initial Fix: Custom `atexit` Handler
 
 One approach would be to patch each `exit(128)` site to call `disconnect_helper(transport)` first. But this has problems:
 
@@ -125,43 +125,44 @@ One approach would be to patch each `exit(128)` site to call `disconnect_helper(
 - Some of those `exit()` sites don't have `transport` in scope, so threading it through would be invasive
 - Future code could add new `exit()` calls without knowing about the cleanup requirement
 
-Instead, I used an `atexit` handler — a safety net that catches *all* exit paths with zero changes to existing control flow. Git itself uses this pattern in several places, most notably in `run-command.c` where `cleanup_children_on_exit` is registered via `atexit` to kill and reap child processes on abnormal exit, with `clear_child_for_cleanup` to deregister them on normal cleanup. The same pattern applies here — register the helper for reaping, clear it when properly disconnected.
+My initial patch used a custom `atexit` handler — a safety net that catches *all* exit paths with zero changes to existing control flow. The handler called `finish_command()` to reap the transport helper child during process teardown, and was cleared on the normal cleanup path to avoid double-waiting. The same pattern was applied to `connect.c` for SSH/proxy children.
+
+This worked and eliminated the zombies in my testing, so I [submitted it to the Git mailing list](https://lore.kernel.org/git/20260223165147.3294516-1-cshung@gmail.com/).
+
+## Mailing List Review
+
+The patch went through four revisions on the mailing list. The key turning point came in the review of v2, when [Jeff King (peff) pointed out](https://lore.kernel.org/git/20260311184206.GA1911377@coredump.intra.peff.net/) a subtle problem with calling `finish_command()` in an `atexit` handler:
+
+> This waits for the command to exit. Are we sure it will always do so, and it won't sometimes be waiting on us to do something (like close a pipe that is feeding it)? If not, then we can get deadlocks.
+>
+> I think you actually want to kill(), then wait. There is already support for this in run-command.[ch]. You just need to set the clean_on_exit flag of the child_process struct.
+
+He was right. If the child process was blocked waiting for the parent to close a pipe (e.g., stdin), calling `finish_command()` — which just waits — would deadlock. The child waits for the parent to close the pipe, and the parent waits for the child to exit. Neither proceeds.
+
+Git's `run-command.c` already has infrastructure for this exact problem: the `clean_on_exit` flag. When set, git registers the child process for cleanup on exit. The cleanup sends `SIGTERM` first, *then* waits — ensuring the child terminates promptly. It also handles signal-based exits, not just `atexit`. A companion flag, `wait_after_clean`, tells the cleanup to wait for the child to actually exit after sending the signal, ensuring it doesn't become a zombie.
 
 ## The Fix
 
-The fix is an `atexit` handler:
+The final fix is remarkably simple — just setting two flags on the `child_process` struct before starting the command:
+
+In `transport-helper.c`:
 
 ```c
-static struct child_process *helper_to_reap;
-
-static void cleanup_helper_on_exit(void)
-{
-    if (helper_to_reap)
-        finish_command(helper_to_reap);
-}
+helper->clean_on_exit = 1;
+helper->wait_after_clean = 1;
+code = start_command(helper);
 ```
 
-Registered right after the helper starts:
+In `connect.c` (for both `git_proxy_connect` and `git_connect`):
 
 ```c
-data->helper = helper;
-helper_to_reap = helper;
-atexit(cleanup_helper_on_exit);
+conn->clean_on_exit = 1;
+conn->wait_after_clean = 1;
+if (start_command(conn))
+    die(_("unable to fork"));
 ```
 
-And cleared on normal cleanup:
-
-```c
-res = finish_command(data->helper);
-helper_to_reap = NULL;  // atexit handler becomes a no-op
-FREE_AND_NULL(data->helper);
-```
-
-This catches all the `exit(128)` paths without modifying any of them. The `atexit` handler runs during process teardown and reaps the transport helper child.
-
-The normal cleanup path and the `atexit` handler do not conflict. On the normal path, `disconnect_helper()` calls `finish_command()` to reap the child, then sets `helper_to_reap = NULL`. When the process eventually exits, the `atexit` handler sees `NULL` and does nothing. On the error path, `exit(128)` is called without going through `disconnect_helper()`, so `helper_to_reap` is still set, and the `atexit` handler reaps the child.
-
-The same pattern applies to `connect.c`, where `finish_connect()` can be bypassed when callers `die()` or `exit()` before reaching it. An identical atexit handler ensures the SSH or proxy child is reaped.
+No custom `atexit` handlers, no new global state, no changes to existing control flow. The existing `run-command.c` cleanup infrastructure handles everything — it sends `SIGTERM` to the child, waits for it to exit, and works on both normal exit and signal-based exit paths.
 
 ## Verification
 
@@ -180,7 +181,7 @@ Zero zombies, despite continuous authentication failures on two repositories eve
 
 To verify the connect.c fix independently, I used a red/green approach:
 
-1. **Red (before fix):** Built the hound image with git patched only in `transport-helper.c` (no `connect.c` atexit handler). Hid SSH keys (`mv ~/.ssh ~/.ssh_hidden`) to force SSH authentication failures. Within seconds, SSH zombies accumulated:
+1. **Red (before fix):** Built the hound image with git patched only in `transport-helper.c` (no `connect.c` fix). Hid SSH keys (`mv ~/.ssh ~/.ssh_hidden`) to force SSH authentication failures. Within seconds, SSH zombies accumulated:
 
 ```txt
 $ ps aux | grep defunct
@@ -193,14 +194,14 @@ user     3254069  [ssh] <defunct>
 
 All parented to houndd (PID 1 in the container), confirming the `finish_connect()` path was being bypassed on `exit(128)`.
 
-2. **Green (after fix):** Rebuilt git with the `connect.c` atexit handler, rebuilt the hound image, and restarted the container — still with SSH keys hidden. The same SSH failures occurred (`Host key verification failed`, exit status 128), but:
+2. **Green (after fix):** Rebuilt git with the `connect.c` fix, rebuilt the hound image, and restarted the container — still with SSH keys hidden. The same SSH failures occurred (`Host key verification failed`, exit status 128), but:
 
 ```txt
 $ ps aux | grep defunct | grep -v grep | wc -l
 0
 ```
 
-Zero zombies. The atexit handler in `connect.c` successfully reaps the ssh child process on abnormal exit.
+Zero zombies. The `clean_on_exit` mechanism in `connect.c` successfully reaps the ssh child process on abnormal exit.
 
 ## Lessons Learned
 
@@ -214,10 +215,10 @@ Zero zombies. The atexit handler in `connect.c` successfully reaps the ssh child
 
 5. **Namespace translation is essential for container debugging.** Host PIDs and container PIDs are different. `/proc/<pid>/status` with `NSpid` is the bridge.
 
+6. **Code review catches what testing doesn't.** My custom `atexit` fix passed all my tests, but the mailing list review identified a deadlock risk I hadn't considered. The final fix was simpler *and* more robust — it leveraged existing infrastructure instead of reinventing it.
+
 ## Resolution
 
-Both transport paths are now fixed and verified:
-- **HTTPS**: `transport-helper.c` — atexit handler reaps `git-remote-https`
-- **SSH/proxy/local**: `connect.c` — atexit handler reaps the connection child
-
-The fix is available on [GitHub](https://github.com/cshung/git/tree/fix/zombie-reap-on-exit) and has been [submitted to the Git mailing list](https://lore.kernel.org/git/20260223165147.3294516-1-cshung@gmail.com/). The bug exists in git's current `master` branch as of February 2026.
+The patch went through [four revisions on the Git mailing list](https://lore.kernel.org/git/20260223165147.3294516-1-cshung@gmail.com/) — from custom `atexit` handlers to leveraging git's built-in `clean_on_exit` mechanism — and has been [merged to upstream](https://github.com/git/git/commit/dd3693eb0859274d62feac8047e1d486b3beaf31). Both transport paths are now fixed:
+- **HTTPS**: `transport-helper.c` — `clean_on_exit` reaps `git-remote-https`
+- **SSH/proxy/local**: `connect.c` — `clean_on_exit` reaps the connection child
