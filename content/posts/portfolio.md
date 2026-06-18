@@ -25,6 +25,7 @@ Senior Software Engineer at Microsoft with 20+ years of experience. Currently wo
 - **[Time Travel Debugging (2014-2015)](https://github.com/nodejs/node-chakracore/blob/master/TTD-README.md):** Enabled time travel debugging for JavaScript.
 
 #### Publications & Studies
+- **[A Tight Lower Bound for Cycle Detection in Grid Graphs (2026)](https://arxiv.org/abs/2604.23894):** Proved that cycle detection in colored grid graphs requires reading all cells, using adversary arguments with block tiling and checkerboard isolation.
 - **[Two Linear Passes Are Necessary for Sum-Exclude-Self Under Sublinear Space (2026)](https://arxiv.org/abs/2604.01012):** Proved a two-pass lower bound for sum-exclude-self using an information-theoretic argument.
 - **[Exact (n + 2) Comparison Complexity for the N-Repeated Element Problem (2026)](https://arxiv.org/abs/2601.21202):** Established exact comparison bounds using adversary arguments with graph-theoretic structure.
 - **[LeetCode (2023-2026)](https://leetcode.com/u/andrew56/):** Solved 1490+ problems, ranked top 2% globally.
