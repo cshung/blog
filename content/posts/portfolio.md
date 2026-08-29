@@ -25,6 +25,8 @@ Senior Software Engineer at Microsoft with 20+ years of experience. Currently wo
 - **[Time Travel Debugging (2014-2015)](https://github.com/nodejs/node-chakracore/blob/master/TTD-README.md):** Enabled time travel debugging for JavaScript.
 
 #### Publications & Studies
+- **[A Geometric Derivation of the Bitner--Ehrlich--Reingold Loopless Gray Code Algorithm (2026)](https://arxiv.org/abs/2608.23357):** Derived the focus-pointer algorithm geometrically from ruler-sequence trees, successor jumps, and predicted stack-slot values.
+- **[Do We Really Need to Read the Input? An Optimality Proof for Stone Game III (2026)](https://arxiv.org/abs/2608.06162):** Proved linear input-inspection lower bounds for Stone Game III, including variants that prohibit ties or restrict values to be positive.
 - **[A Tight Lower Bound for Cycle Detection in Grid Graphs (2026)](https://arxiv.org/abs/2604.23894):** Proved that cycle detection in colored grid graphs requires reading all cells, using adversary arguments with block tiling and checkerboard isolation.
 - **[Two Linear Passes Are Necessary for Sum-Exclude-Self Under Sublinear Space (2026)](https://arxiv.org/abs/2604.01012):** Proved a two-pass lower bound for sum-exclude-self using an information-theoretic argument.
 - **[Exact (n + 2) Comparison Complexity for the N-Repeated Element Problem (2026)](https://arxiv.org/abs/2601.21202):** Established exact comparison bounds using adversary arguments with graph-theoretic structure.
