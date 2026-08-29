@@ -1,3 +1,8 @@
+cd src\index
+dotnet run
+cd ..\..
+move /Y src\index\index.js static\index.js
+echo Index rebuilt.
 attrib -h ..\cshung.github.io\.git
 move ..\cshung.github.io\.git ..
 hugo
